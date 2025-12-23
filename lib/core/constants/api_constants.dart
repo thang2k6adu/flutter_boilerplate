@@ -1,10 +1,31 @@
-class ApiConstants {
-  // Base URL cho API
-  static const String baseUrl = 'http://10.0.2.2:3000/api';
-  static const String webClientId =
-      '839130523883-20l9ejh0q1omrdt74u14qnr5mqgt1f0h.apps.googleusercontent.com';
+import 'package:flutter_dotenv/flutter_dotenv.dart';
 
-  // Timeout for request
-  static const int connectTimeout = 10000; // 10s
-  static const int receiveTimeout = 3000; // 3s
+class ApiConstants {
+  ApiConstants._();
+
+  static String get baseUrl {
+    return dotenv.env['API_BASE_URL'] ?? 'http://10.0.2.2:3000/api';
+  }
+
+  static String get webClientId {
+    return dotenv.env['GOOGLE_WEB_CLIENT_ID'] ?? '';
+  }
+
+  static int get connectTimeout {
+    final value = dotenv.env['API_CONNECT_TIMEOUT'];
+    return value != null ? int.tryParse(value) ?? 10000 : 10000;
+  }
+
+  static int get receiveTimeout {
+    final value = dotenv.env['API_RECEIVE_TIMEOUT'];
+    return value != null ? int.tryParse(value) ?? 3000 : 3000;
+  }
+
+  static String get appName {
+    return dotenv.env['APP_NAME'] ?? 'JT291 Mobile App';
+  }
+
+  static String get appVersion {
+    return dotenv.env['APP_VERSION'] ?? '1.0.0';
+  }
 }

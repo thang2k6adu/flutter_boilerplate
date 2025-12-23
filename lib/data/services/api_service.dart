@@ -11,7 +11,7 @@ class ApiService {
     _dio = Dio(
       BaseOptions(
         baseUrl: ApiConstants.baseUrl,
-        connectTimeout: const Duration(
+        connectTimeout: Duration(
           milliseconds: ApiConstants.connectTimeout,
         ),
       ),

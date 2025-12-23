@@ -1,3 +1,4 @@
+import 'package:jt291_flutter_mobile/core/constants/api_endpoints.dart';
 import 'package:jt291_flutter_mobile/data/datasources/remote/auth_remote_datasource.dart';
 import 'package:jt291_flutter_mobile/data/models/auth/auth_response_dto.dart';
 import 'package:jt291_flutter_mobile/data/models/auth/token_dto.dart';
@@ -16,7 +17,7 @@ class AuthRemoteDataSourceImpl implements AuthRemoteDataSource {
     required String password,
   }) async {
     final response = await apiService.post(
-      '/auth/login',
+      ApiEndpoints.authLogin,
       data: {
         'email': email,
         'password': password,
@@ -36,7 +37,7 @@ class AuthRemoteDataSourceImpl implements AuthRemoteDataSource {
     String? name,
   }) async {
     final response = await apiService.post(
-      '/auth/register',
+      ApiEndpoints.authRegister,
       data: {
         'email': email,
         'password': password,
@@ -57,7 +58,7 @@ class AuthRemoteDataSourceImpl implements AuthRemoteDataSource {
     String? platform,
   }) async {
     final response = await apiService.post(
-      '/auth/firebase/login',
+      ApiEndpoints.authFirebaseLogin,
       data: {
         'idToken': idToken,
         if (deviceId != null) 'deviceId': deviceId,
@@ -74,7 +75,7 @@ class AuthRemoteDataSourceImpl implements AuthRemoteDataSource {
   @override
   Future<ApiResponse<TokenDto>> refreshToken(String refreshToken) async {
     final response = await apiService.post(
-      '/auth/refresh',
+      ApiEndpoints.authRefresh,
       data: {
         'refreshToken': refreshToken,
       },
@@ -88,7 +89,7 @@ class AuthRemoteDataSourceImpl implements AuthRemoteDataSource {
 
   @override
   Future<ApiResponse<void>> logout() async {
-    final response = await apiService.post('/auth/logout');
+    final response = await apiService.post(ApiEndpoints.authLogout);
 
     // data thường null, mapper chỉ dùng khi có data
     return ApiResponse<void>.fromJson(

@@ -1,3 +1,4 @@
+import 'package:jt291_flutter_mobile/core/constants/api_endpoints.dart';
 import 'package:jt291_flutter_mobile/data/datasources/remote/user_remote_datasource.dart';
 import 'package:jt291_flutter_mobile/data/models/users/user_dto.dart';
 import 'package:jt291_flutter_mobile/data/models/base/api_response.dart';
@@ -12,7 +13,7 @@ class UserRemoteDataSourceImpl implements UserRemoteDataSource {
   @override
   Future<ApiResponse<UserDto>> getCurrentUser() async {
     try {
-      final response = await apiService.get('/users/profile');
+      final response = await apiService.get(ApiEndpoints.userProfile);
       return ApiResponse<UserDto>.fromJson(
         response as Map<String, dynamic>,
         (data) => UserDto.fromJson(data as Map<String, dynamic>),
@@ -34,7 +35,7 @@ class UserRemoteDataSourceImpl implements UserRemoteDataSource {
   }) async {
     try {
       final response = await apiService.put(
-        '/users/profile',
+        ApiEndpoints.userProfile,
         data: {
           if (name != null) 'name': name,
           if (avatar != null) 'avatar': avatar,
@@ -57,7 +58,7 @@ class UserRemoteDataSourceImpl implements UserRemoteDataSource {
   @override
   Future<ApiResponse<UserDto>> getUserById(String userId) async {
     try {
-      final response = await apiService.get('/users/$userId');
+      final response = await apiService.get(ApiEndpoints.getUserById(userId));
       return ApiResponse<UserDto>.fromJson(
         response as Map<String, dynamic>,
         (data) => UserDto.fromJson(data as Map<String, dynamic>),

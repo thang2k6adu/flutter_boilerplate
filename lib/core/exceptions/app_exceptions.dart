@@ -1,4 +1,3 @@
-/// Base exception class cho toàn bộ app
 abstract class AppException implements Exception {
   final String message;
   final String? code;
@@ -14,9 +13,7 @@ abstract class AppException implements Exception {
   String toString() => message;
 }
 
-// ==================== NETWORK EXCEPTIONS ====================
 
-/// Exception chung cho các lỗi network
 class NetworkException extends AppException {
   NetworkException({
     required super.message,
@@ -25,7 +22,6 @@ class NetworkException extends AppException {
   });
 }
 
-/// Không có kết nối internet
 class NoInternetException extends NetworkException {
   NoInternetException()
       : super(
@@ -34,7 +30,6 @@ class NoInternetException extends NetworkException {
         );
 }
 
-/// Request timeout
 class TimeoutException extends NetworkException {
   TimeoutException()
       : super(
@@ -43,7 +38,6 @@ class TimeoutException extends NetworkException {
         );
 }
 
-/// Server không phản hồi
 class ServerException extends NetworkException {
   ServerException({String? message})
       : super(
@@ -52,7 +46,6 @@ class ServerException extends NetworkException {
         );
 }
 
-/// Bad request (400)
 class BadRequestException extends NetworkException {
   BadRequestException({String? message})
       : super(
@@ -61,7 +54,6 @@ class BadRequestException extends NetworkException {
         );
 }
 
-/// Not found (404)
 class NotFoundException extends NetworkException {
   NotFoundException({String? message})
       : super(
@@ -70,7 +62,6 @@ class NotFoundException extends NetworkException {
         );
 }
 
-/// Service unavailable (503)
 class ServiceUnavailableException extends NetworkException {
   ServiceUnavailableException()
       : super(
@@ -79,9 +70,6 @@ class ServiceUnavailableException extends NetworkException {
         );
 }
 
-// ==================== AUTHENTICATION EXCEPTIONS ====================
-
-/// Exception chung cho authentication
 class AuthException extends AppException {
   AuthException({
     required super.message,
@@ -90,7 +78,6 @@ class AuthException extends AppException {
   });
 }
 
-/// Chưa đăng nhập
 class UnauthorizedException extends AuthException {
   UnauthorizedException()
       : super(
@@ -99,7 +86,6 @@ class UnauthorizedException extends AuthException {
         );
 }
 
-/// Không có quyền truy cập
 class ForbiddenException extends AuthException {
   ForbiddenException()
       : super(
@@ -108,7 +94,6 @@ class ForbiddenException extends AuthException {
         );
 }
 
-/// Token hết hạn
 class TokenExpiredException extends AuthException {
   TokenExpiredException()
       : super(
@@ -117,7 +102,6 @@ class TokenExpiredException extends AuthException {
         );
 }
 
-/// Thông tin đăng nhập không hợp lệ
 class InvalidCredentialsException extends AuthException {
   InvalidCredentialsException()
       : super(
@@ -126,7 +110,6 @@ class InvalidCredentialsException extends AuthException {
         );
 }
 
-/// Email đã tồn tại
 class EmailAlreadyExistsException extends AuthException {
   EmailAlreadyExistsException()
       : super(
@@ -135,7 +118,6 @@ class EmailAlreadyExistsException extends AuthException {
         );
 }
 
-/// Tài khoản bị khóa
 class AccountLockedException extends AuthException {
   AccountLockedException()
       : super(
@@ -144,9 +126,6 @@ class AccountLockedException extends AuthException {
         );
 }
 
-// ==================== VALIDATION EXCEPTIONS ====================
-
-/// Exception cho validation errors
 class ValidationException extends AppException {
   final Map<String, List<String>>? errors;
 
@@ -160,7 +139,6 @@ class ValidationException extends AppException {
         );
 }
 
-/// Field bắt buộc bị thiếu
 class RequiredFieldException extends ValidationException {
   RequiredFieldException(String fieldName)
       : super(
@@ -171,7 +149,6 @@ class RequiredFieldException extends ValidationException {
         );
 }
 
-/// Format không đúng
 class InvalidFormatException extends ValidationException {
   InvalidFormatException(String fieldName, {String? format})
       : super(
@@ -181,9 +158,6 @@ class InvalidFormatException extends ValidationException {
         );
 }
 
-// ==================== DATABASE EXCEPTIONS ====================
-
-/// Exception chung cho database
 class DatabaseException extends AppException {
   DatabaseException({
     required super.message,
@@ -192,7 +166,6 @@ class DatabaseException extends AppException {
   });
 }
 
-/// Không tìm thấy dữ liệu trong database
 class DataNotFoundException extends DatabaseException {
   DataNotFoundException({String? entity})
       : super(
@@ -203,7 +176,6 @@ class DataNotFoundException extends DatabaseException {
         );
 }
 
-/// Lỗi khi lưu dữ liệu
 class DataSaveException extends DatabaseException {
   DataSaveException()
       : super(
@@ -212,7 +184,6 @@ class DataSaveException extends DatabaseException {
         );
 }
 
-/// Duplicate entry
 class DuplicateEntryException extends DatabaseException {
   DuplicateEntryException({String? entity})
       : super(
@@ -223,9 +194,7 @@ class DuplicateEntryException extends DatabaseException {
         );
 }
 
-// ==================== FILE EXCEPTIONS ====================
 
-/// Exception cho file operations
 class FileException extends AppException {
   FileException({
     required super.message,
@@ -234,7 +203,6 @@ class FileException extends AppException {
   });
 }
 
-/// File không tồn tại
 class FileNotFoundException extends FileException {
   FileNotFoundException()
       : super(
@@ -243,7 +211,6 @@ class FileNotFoundException extends FileException {
         );
 }
 
-/// File quá lớn
 class FileSizeException extends FileException {
   final int maxSizeInMB;
 
@@ -254,7 +221,6 @@ class FileSizeException extends FileException {
         );
 }
 
-/// Format file không được hỗ trợ
 class UnsupportedFileTypeException extends FileException {
   UnsupportedFileTypeException({List<String>? supportedTypes})
       : super(
@@ -265,9 +231,6 @@ class UnsupportedFileTypeException extends FileException {
         );
 }
 
-// ==================== PERMISSION EXCEPTIONS ====================
-
-/// Exception cho permissions
 class PermissionException extends AppException {
   PermissionException({
     required super.message,
@@ -276,7 +239,6 @@ class PermissionException extends AppException {
   });
 }
 
-/// Camera permission denied
 class CameraPermissionException extends PermissionException {
   CameraPermissionException()
       : super(
@@ -285,7 +247,6 @@ class CameraPermissionException extends PermissionException {
         );
 }
 
-/// Storage permission denied
 class StoragePermissionException extends PermissionException {
   StoragePermissionException()
       : super(
@@ -294,7 +255,6 @@ class StoragePermissionException extends PermissionException {
         );
 }
 
-/// Location permission denied
 class LocationPermissionException extends PermissionException {
   LocationPermissionException()
       : super(
@@ -303,9 +263,6 @@ class LocationPermissionException extends PermissionException {
         );
 }
 
-// ==================== PAYMENT EXCEPTIONS ====================
-
-/// Exception cho payment
 class PaymentException extends AppException {
   PaymentException({
     required super.message,
@@ -314,7 +271,6 @@ class PaymentException extends AppException {
   });
 }
 
-/// Payment failed
 class PaymentFailedException extends PaymentException {
   PaymentFailedException({String? reason})
       : super(
@@ -323,7 +279,6 @@ class PaymentFailedException extends PaymentException {
         );
 }
 
-/// Payment cancelled
 class PaymentCancelledException extends PaymentException {
   PaymentCancelledException()
       : super(
@@ -332,7 +287,6 @@ class PaymentCancelledException extends PaymentException {
         );
 }
 
-/// Insufficient funds
 class InsufficientFundsException extends PaymentException {
   InsufficientFundsException()
       : super(
@@ -341,9 +295,6 @@ class InsufficientFundsException extends PaymentException {
         );
 }
 
-// ==================== GENERAL EXCEPTIONS ====================
-
-/// Exception chung cho các lỗi không xác định
 class UnknownException extends AppException {
   UnknownException({String? message})
       : super(
@@ -352,7 +303,6 @@ class UnknownException extends AppException {
         );
 }
 
-/// Feature chưa được triển khai
 class NotImplementedException extends AppException {
   NotImplementedException()
       : super(
@@ -361,7 +311,6 @@ class NotImplementedException extends AppException {
         );
 }
 
-/// Cache exception
 class CacheException extends AppException {
   CacheException()
       : super(
@@ -370,9 +319,6 @@ class CacheException extends AppException {
         );
 }
 
-// ==================== EXCEPTION HANDLER ====================
-
-/// Helper class để parse exception từ HTTP status code
 class ExceptionHandler {
   static AppException fromStatusCode(int statusCode, {String? message}) {
     switch (statusCode) {
@@ -395,7 +341,6 @@ class ExceptionHandler {
     }
   }
 
-  /// Parse exception và trả về message phù hợp
   static String getErrorMessage(dynamic error) {
     if (error is AppException) {
       return error.message;

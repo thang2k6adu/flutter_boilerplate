@@ -79,7 +79,21 @@ Resolving dependencies... (2.5s)
 Got dependencies!
 ```
 
-### Step 3: Generate Code
+### Step 3: Setup Environment Variables
+
+```bash
+# Create .env file from example
+cp .env.example .env
+
+# Edit .env with your configuration
+# Update at minimum:
+# - API_BASE_URL (your backend API URL)
+# - GOOGLE_WEB_CLIENT_ID (from Firebase Console)
+```
+
+> **⚠️ Important**: The `.env` file is required for the app to run. See [Configuration](#-configuration) section below for details.
+
+### Step 4: Generate Code
 
 This project uses code generation for Freezed models, JSON serialization, and Riverpod providers.
 
@@ -135,25 +149,59 @@ flutterfire configure
 
 See [FIREBASE_SETUP.md](FIREBASE_SETUP.md) for detailed Firebase configuration.
 
-### 2. API Configuration
+### 2. Environment Variables Setup ⭐
 
-Update API endpoints in [`lib/core/constants/api_constants.dart`](lib/core/constants/api_constants.dart ):
+This project uses `.env` files for configuration. This is **REQUIRED** for the app to run.
 
-```dart
-class ApiConstants {
-  static const String baseUrl = 'https://your-api.com/api/v1';
-  // ... other endpoints
-}
+#### Step 1: Create .env file
+
+```bash
+# Copy the example file
+cp .env.example .env
 ```
 
-### 3. Environment Variables (Optional)
+#### Step 2: Configure your .env
 
-Create `.env` file in the root directory:
+Edit `.env` with your actual values:
 
 ```env
-API_BASE_URL=https://your-api.com/api/v1
-API_KEY=your_api_key_here
+# API Configuration
+API_BASE_URL=http://10.0.2.2:3000/api
+
+# Firebase Configuration  
+GOOGLE_WEB_CLIENT_ID=your-actual-web-client-id.apps.googleusercontent.com
+
+# Network Configuration (optional - has defaults)
+API_CONNECT_TIMEOUT=10000
+API_RECEIVE_TIMEOUT=3000
+
+# App Configuration (optional)
+APP_NAME=Your App Name
+APP_VERSION=1.0.0
 ```
+
+#### Important Notes:
+
+- **Android Emulator**: Use `http://10.0.2.2:3000/api` (special alias for localhost)
+- **iOS Simulator**: Use `http://localhost:3000/api`
+- **Physical Device**: Use `http://192.168.x.x:3000/api` (your computer's local IP)
+- **Google Web Client ID**: Get from [Firebase Console](https://console.firebase.google.com/) → Project Settings → OAuth 2.0 Client IDs
+
+#### Step 3: Verify configuration
+
+The app will automatically load `.env` on startup. All API endpoints are managed through:
+- `ApiConstants` - Configuration values (from .env)
+- `ApiEndpoints` - Endpoint paths
+
+```dart
+// Access in code
+import 'package:jt291_flutter_mobile/core/constants/constants.dart';
+
+final baseUrl = ApiConstants.baseUrl;        // from .env
+final endpoint = ApiEndpoints.authLogin;     // '/auth/login'
+```
+
+> **📖 Detailed Guide**: See [ENV_SETUP.md](ENV_SETUP.md) for complete environment configuration guide and [API_ENDPOINTS.md](API_ENDPOINTS.md) for all available endpoints.
 
 ---
 
@@ -358,6 +406,44 @@ flutterfire configure
 # - lib/firebase_options.dart
 ```
 
+### Issue: "dotenv.env is null" or ".env file not found"
+
+**Solution:**
+```bash
+# 1. Make sure .env file exists
+ls -la .env
+
+# 2. If not, create from example
+cp .env.example .env
+
+# 3. Edit .env with your actual values
+# 4. Make sure .env is in assets (pubspec.yaml)
+
+# 5. Clean and rebuild
+flutter clean
+flutter pub get
+flutter run
+```
+
+### Issue: "API calls fail with connection error"
+
+**Solution:**
+
+Check your `.env` configuration:
+
+```env
+# For Android Emulator (use special alias)
+API_BASE_URL=http://10.0.2.2:3000/api
+
+# For iOS Simulator
+API_BASE_URL=http://localhost:3000/api
+
+# For Physical Device (use your computer's IP)
+API_BASE_URL=http://192.168.1.100:3000/api
+```
+
+Make sure your backend server is running and accessible.
+
 ### Issue: "Flutter doctor shows issues"
 
 **Solution:**
@@ -378,15 +464,21 @@ flutter upgrade
 
 Now that your project is running:
 
-1. ✅ Read [CODING_GUIDE.md](CODING_GUIDE.md) to learn how to add features
-2. ✅ Explore the project structure in [README.md](README.md)
-3. ✅ Configure Firebase in [FIREBASE_SETUP.md](FIREBASE_SETUP.md)
-4. ✅ Start building your features!
+1. ✅ Read [ENV_SETUP.md](ENV_SETUP.md) for detailed environment configuration
+2. ✅ Check [API_ENDPOINTS.md](API_ENDPOINTS.md) for all available API endpoints  
+3. ✅ Read [CODING_GUIDE.md](CODING_GUIDE.md) to learn how to add features
+4. ✅ Explore the project structure in [README.md](README.md)
+5. ✅ Configure Firebase in [FIREBASE_SETUP.md](FIREBASE_SETUP.md)
+6. ✅ Start building your features!
 
 ---
 
 ## 📚 Additional Resources
 
+- [ENV_SETUP.md](ENV_SETUP.md) - Environment variables configuration
+- [API_ENDPOINTS.md](API_ENDPOINTS.md) - Complete API endpoints documentation
+- [CODING_GUIDE.md](CODING_GUIDE.md) - Feature implementation guide
+- [FIREBASE_SETUP.md](FIREBASE_SETUP.md) - Firebase configuration guide
 - [Flutter Documentation](https://flutter.dev/docs)
 - [Riverpod Documentation](https://riverpod.dev/)
 - [Go Router Documentation](https://pub.dev/packages/go_router)

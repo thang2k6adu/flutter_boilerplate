@@ -50,6 +50,7 @@ dependencies:
   freezed_annotation: ^3.1.0
   json_annotation: ^4.9.0
   google_sign_in: ^7.2.0
+  flutter_dotenv: ^5.2.1
   flutter_svg: ^2.2.1
   vector_math: ^2.1.2
   carousel_slider: ^5.0.0
@@ -107,6 +108,7 @@ flutter:
     - assets/icons/
     - assets/images/background/
     - assets/images/
+    - .env
   # To add custom fonts to your application, add a fonts section here,
   # in this "flutter" section. Each entry in this list should have a
   # "family" key with the font family name, and a "fonts" key with a
