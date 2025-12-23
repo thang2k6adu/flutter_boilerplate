@@ -1,5 +1,5 @@
 import 'package:go_router/go_router.dart';
-import '../../features/main/screens/main_screen.dart';
+import '../../presentation/main/screens/main_screen.dart';
 import '../core/core.dart';
 
 final homeRoutes = <GoRoute>[

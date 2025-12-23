@@ -1,5 +1,5 @@
 import 'package:go_router/go_router.dart';
-import '../../features/auth/screens/login_screen.dart';
+import '../../presentation/auth/screens/login_screen.dart';
 import '../core/core.dart';
 
 final authRoutes = <GoRoute>[

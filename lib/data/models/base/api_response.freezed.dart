@@ -11,6 +11,7 @@ part of 'api_response.dart';
 
 // dart format off
 T _$identity<T>(T value) => value;
+
 /// @nodoc
 mixin _$ApiResponse<T> {
 
@@ -21,6 +22,8 @@ mixin _$ApiResponse<T> {
 @pragma('vm:prefer-inline')
 $ApiResponseCopyWith<T, ApiResponse<T>> get copyWith => _$ApiResponseCopyWithImpl<T, ApiResponse<T>>(this as ApiResponse<T>, _$identity);
 
+  /// Serializes this ApiResponse to a JSON map.
+  Map<String, dynamic> toJson(Object? Function(T) toJsonT);
 
 
 @override
@@ -28,7 +31,7 @@ bool operator ==(Object other) {
   return identical(this, other) || (other.runtimeType == runtimeType&&other is ApiResponse<T>&&(identical(other.error, error) || other.error == error)&&(identical(other.code, code) || other.code == code)&&(identical(other.message, message) || other.message == message)&&const DeepCollectionEquality().equals(other.data, data)&&(identical(other.traceId, traceId) || other.traceId == traceId));
 }
 
-
+@JsonKey(includeFromJson: false, includeToJson: false)
 @override
 int get hashCode => Object.hash(runtimeType,error,code,message,const DeepCollectionEquality().hash(data),traceId);
 
@@ -207,11 +210,11 @@ return $default(_that.error,_that.code,_that.message,_that.data,_that.traceId);c
 }
 
 /// @nodoc
-
+@JsonSerializable(genericArgumentFactories: true)
 
 class _ApiResponse<T> implements ApiResponse<T> {
   const _ApiResponse({this.error = false, this.code = 0, this.message = 'Success', this.data, this.traceId});
-  
+  factory _ApiResponse.fromJson(Map<String, dynamic> json,T Function(Object?) fromJsonT) => _$ApiResponseFromJson(json,fromJsonT);
 
 @override@JsonKey() final  bool error;
 @override@JsonKey() final  int code;
@@ -225,14 +228,17 @@ class _ApiResponse<T> implements ApiResponse<T> {
 @pragma('vm:prefer-inline')
 _$ApiResponseCopyWith<T, _ApiResponse<T>> get copyWith => __$ApiResponseCopyWithImpl<T, _ApiResponse<T>>(this, _$identity);
 
-
+@override
+Map<String, dynamic> toJson(Object? Function(T) toJsonT) {
+  return _$ApiResponseToJson<T>(this, toJsonT);
+}
 
 @override
 bool operator ==(Object other) {
   return identical(this, other) || (other.runtimeType == runtimeType&&other is _ApiResponse<T>&&(identical(other.error, error) || other.error == error)&&(identical(other.code, code) || other.code == code)&&(identical(other.message, message) || other.message == message)&&const DeepCollectionEquality().equals(other.data, data)&&(identical(other.traceId, traceId) || other.traceId == traceId));
 }
 
-
+@JsonKey(includeFromJson: false, includeToJson: false)
 @override
 int get hashCode => Object.hash(runtimeType,error,code,message,const DeepCollectionEquality().hash(data),traceId);
 
@@ -280,6 +286,7 @@ as String?,
 
 }
 
+
 /// @nodoc
 mixin _$PaginatedData<T> {
 
@@ -290,6 +297,8 @@ mixin _$PaginatedData<T> {
 @pragma('vm:prefer-inline')
 $PaginatedDataCopyWith<T, PaginatedData<T>> get copyWith => _$PaginatedDataCopyWithImpl<T, PaginatedData<T>>(this as PaginatedData<T>, _$identity);
 
+  /// Serializes this PaginatedData to a JSON map.
+  Map<String, dynamic> toJson(Object? Function(T) toJsonT);
 
 
 @override
@@ -297,7 +306,7 @@ bool operator ==(Object other) {
   return identical(this, other) || (other.runtimeType == runtimeType&&other is PaginatedData<T>&&const DeepCollectionEquality().equals(other.items, items)&&(identical(other.meta, meta) || other.meta == meta));
 }
 
-
+@JsonKey(includeFromJson: false, includeToJson: false)
 @override
 int get hashCode => Object.hash(runtimeType,const DeepCollectionEquality().hash(items),meta);
 
@@ -482,11 +491,11 @@ return $default(_that.items,_that.meta);case _:
 }
 
 /// @nodoc
-
+@JsonSerializable(genericArgumentFactories: true)
 
 class _PaginatedData<T> implements PaginatedData<T> {
   const _PaginatedData({final  List<T> items = const [], required this.meta}): _items = items;
-  
+  factory _PaginatedData.fromJson(Map<String, dynamic> json,T Function(Object?) fromJsonT) => _$PaginatedDataFromJson(json,fromJsonT);
 
  final  List<T> _items;
 @override@JsonKey() List<T> get items {
@@ -503,14 +512,17 @@ class _PaginatedData<T> implements PaginatedData<T> {
 @pragma('vm:prefer-inline')
 _$PaginatedDataCopyWith<T, _PaginatedData<T>> get copyWith => __$PaginatedDataCopyWithImpl<T, _PaginatedData<T>>(this, _$identity);
 
-
+@override
+Map<String, dynamic> toJson(Object? Function(T) toJsonT) {
+  return _$PaginatedDataToJson<T>(this, toJsonT);
+}
 
 @override
 bool operator ==(Object other) {
   return identical(this, other) || (other.runtimeType == runtimeType&&other is _PaginatedData<T>&&const DeepCollectionEquality().equals(other._items, _items)&&(identical(other.meta, meta) || other.meta == meta));
 }
 
-
+@JsonKey(includeFromJson: false, includeToJson: false)
 @override
 int get hashCode => Object.hash(runtimeType,const DeepCollectionEquality().hash(_items),meta);
 
@@ -564,16 +576,19 @@ $PaginationMetaCopyWith<$Res> get meta {
 }
 }
 
+
 /// @nodoc
 mixin _$PaginationMeta {
 
-@JsonKey(name: 'item_count') int get itemCount;@JsonKey(name: 'total_items') int get totalItems;@JsonKey(name: 'items_per_page') int get itemsPerPage;@JsonKey(name: 'total_pages') int get totalPages;@JsonKey(name: 'current_page') int get currentPage;
+@JsonKey(name: 'item_count', fromJson: PaginationMeta._toInt) int get itemCount;@JsonKey(name: 'total_items', fromJson: PaginationMeta._toInt) int get totalItems;@JsonKey(name: 'items_per_page', fromJson: PaginationMeta._toInt) int get itemsPerPage;@JsonKey(name: 'total_pages', fromJson: PaginationMeta._toInt) int get totalPages;@JsonKey(name: 'current_page', fromJson: PaginationMeta._toInt) int get currentPage;
 /// Create a copy of PaginationMeta
 /// with the given fields replaced by the non-null parameter values.
 @JsonKey(includeFromJson: false, includeToJson: false)
 @pragma('vm:prefer-inline')
 $PaginationMetaCopyWith<PaginationMeta> get copyWith => _$PaginationMetaCopyWithImpl<PaginationMeta>(this as PaginationMeta, _$identity);
 
+  /// Serializes this PaginationMeta to a JSON map.
+  Map<String, dynamic> toJson();
 
 
 @override
@@ -581,7 +596,7 @@ bool operator ==(Object other) {
   return identical(this, other) || (other.runtimeType == runtimeType&&other is PaginationMeta&&(identical(other.itemCount, itemCount) || other.itemCount == itemCount)&&(identical(other.totalItems, totalItems) || other.totalItems == totalItems)&&(identical(other.itemsPerPage, itemsPerPage) || other.itemsPerPage == itemsPerPage)&&(identical(other.totalPages, totalPages) || other.totalPages == totalPages)&&(identical(other.currentPage, currentPage) || other.currentPage == currentPage));
 }
 
-
+@JsonKey(includeFromJson: false, includeToJson: false)
 @override
 int get hashCode => Object.hash(runtimeType,itemCount,totalItems,itemsPerPage,totalPages,currentPage);
 
@@ -598,7 +613,7 @@ abstract mixin class $PaginationMetaCopyWith<$Res>  {
   factory $PaginationMetaCopyWith(PaginationMeta value, $Res Function(PaginationMeta) _then) = _$PaginationMetaCopyWithImpl;
 @useResult
 $Res call({
-@JsonKey(name: 'item_count') int itemCount,@JsonKey(name: 'total_items') int totalItems,@JsonKey(name: 'items_per_page') int itemsPerPage,@JsonKey(name: 'total_pages') int totalPages,@JsonKey(name: 'current_page') int currentPage
+@JsonKey(name: 'item_count', fromJson: PaginationMeta._toInt) int itemCount,@JsonKey(name: 'total_items', fromJson: PaginationMeta._toInt) int totalItems,@JsonKey(name: 'items_per_page', fromJson: PaginationMeta._toInt) int itemsPerPage,@JsonKey(name: 'total_pages', fromJson: PaginationMeta._toInt) int totalPages,@JsonKey(name: 'current_page', fromJson: PaginationMeta._toInt) int currentPage
 });
 
 
@@ -707,7 +722,7 @@ return $default(_that);case _:
 /// }
 /// ```
 
-@optionalTypeArgs TResult maybeWhen<TResult extends Object?>(TResult Function(@JsonKey(name: 'item_count')  int itemCount, @JsonKey(name: 'total_items')  int totalItems, @JsonKey(name: 'items_per_page')  int itemsPerPage, @JsonKey(name: 'total_pages')  int totalPages, @JsonKey(name: 'current_page')  int currentPage)?  $default,{required TResult orElse(),}) {final _that = this;
+@optionalTypeArgs TResult maybeWhen<TResult extends Object?>(TResult Function(@JsonKey(name: 'item_count', fromJson: PaginationMeta._toInt)  int itemCount, @JsonKey(name: 'total_items', fromJson: PaginationMeta._toInt)  int totalItems, @JsonKey(name: 'items_per_page', fromJson: PaginationMeta._toInt)  int itemsPerPage, @JsonKey(name: 'total_pages', fromJson: PaginationMeta._toInt)  int totalPages, @JsonKey(name: 'current_page', fromJson: PaginationMeta._toInt)  int currentPage)?  $default,{required TResult orElse(),}) {final _that = this;
 switch (_that) {
 case _PaginationMeta() when $default != null:
 return $default(_that.itemCount,_that.totalItems,_that.itemsPerPage,_that.totalPages,_that.currentPage);case _:
@@ -728,7 +743,7 @@ return $default(_that.itemCount,_that.totalItems,_that.itemsPerPage,_that.totalP
 /// }
 /// ```
 
-@optionalTypeArgs TResult when<TResult extends Object?>(TResult Function(@JsonKey(name: 'item_count')  int itemCount, @JsonKey(name: 'total_items')  int totalItems, @JsonKey(name: 'items_per_page')  int itemsPerPage, @JsonKey(name: 'total_pages')  int totalPages, @JsonKey(name: 'current_page')  int currentPage)  $default,) {final _that = this;
+@optionalTypeArgs TResult when<TResult extends Object?>(TResult Function(@JsonKey(name: 'item_count', fromJson: PaginationMeta._toInt)  int itemCount, @JsonKey(name: 'total_items', fromJson: PaginationMeta._toInt)  int totalItems, @JsonKey(name: 'items_per_page', fromJson: PaginationMeta._toInt)  int itemsPerPage, @JsonKey(name: 'total_pages', fromJson: PaginationMeta._toInt)  int totalPages, @JsonKey(name: 'current_page', fromJson: PaginationMeta._toInt)  int currentPage)  $default,) {final _that = this;
 switch (_that) {
 case _PaginationMeta():
 return $default(_that.itemCount,_that.totalItems,_that.itemsPerPage,_that.totalPages,_that.currentPage);case _:
@@ -748,7 +763,7 @@ return $default(_that.itemCount,_that.totalItems,_that.itemsPerPage,_that.totalP
 /// }
 /// ```
 
-@optionalTypeArgs TResult? whenOrNull<TResult extends Object?>(TResult? Function(@JsonKey(name: 'item_count')  int itemCount, @JsonKey(name: 'total_items')  int totalItems, @JsonKey(name: 'items_per_page')  int itemsPerPage, @JsonKey(name: 'total_pages')  int totalPages, @JsonKey(name: 'current_page')  int currentPage)?  $default,) {final _that = this;
+@optionalTypeArgs TResult? whenOrNull<TResult extends Object?>(TResult? Function(@JsonKey(name: 'item_count', fromJson: PaginationMeta._toInt)  int itemCount, @JsonKey(name: 'total_items', fromJson: PaginationMeta._toInt)  int totalItems, @JsonKey(name: 'items_per_page', fromJson: PaginationMeta._toInt)  int itemsPerPage, @JsonKey(name: 'total_pages', fromJson: PaginationMeta._toInt)  int totalPages, @JsonKey(name: 'current_page', fromJson: PaginationMeta._toInt)  int currentPage)?  $default,) {final _that = this;
 switch (_that) {
 case _PaginationMeta() when $default != null:
 return $default(_that.itemCount,_that.totalItems,_that.itemsPerPage,_that.totalPages,_that.currentPage);case _:
@@ -760,17 +775,17 @@ return $default(_that.itemCount,_that.totalItems,_that.itemsPerPage,_that.totalP
 }
 
 /// @nodoc
-
+@JsonSerializable()
 
 class _PaginationMeta implements PaginationMeta {
-  const _PaginationMeta({@JsonKey(name: 'item_count') this.itemCount = 0, @JsonKey(name: 'total_items') this.totalItems = 0, @JsonKey(name: 'items_per_page') this.itemsPerPage = 10, @JsonKey(name: 'total_pages') this.totalPages = 0, @JsonKey(name: 'current_page') this.currentPage = 1});
-  
+  const _PaginationMeta({@JsonKey(name: 'item_count', fromJson: PaginationMeta._toInt) this.itemCount = 0, @JsonKey(name: 'total_items', fromJson: PaginationMeta._toInt) this.totalItems = 0, @JsonKey(name: 'items_per_page', fromJson: PaginationMeta._toInt) this.itemsPerPage = 10, @JsonKey(name: 'total_pages', fromJson: PaginationMeta._toInt) this.totalPages = 0, @JsonKey(name: 'current_page', fromJson: PaginationMeta._toInt) this.currentPage = 1});
+  factory _PaginationMeta.fromJson(Map<String, dynamic> json) => _$PaginationMetaFromJson(json);
 
-@override@JsonKey(name: 'item_count') final  int itemCount;
-@override@JsonKey(name: 'total_items') final  int totalItems;
-@override@JsonKey(name: 'items_per_page') final  int itemsPerPage;
-@override@JsonKey(name: 'total_pages') final  int totalPages;
-@override@JsonKey(name: 'current_page') final  int currentPage;
+@override@JsonKey(name: 'item_count', fromJson: PaginationMeta._toInt) final  int itemCount;
+@override@JsonKey(name: 'total_items', fromJson: PaginationMeta._toInt) final  int totalItems;
+@override@JsonKey(name: 'items_per_page', fromJson: PaginationMeta._toInt) final  int itemsPerPage;
+@override@JsonKey(name: 'total_pages', fromJson: PaginationMeta._toInt) final  int totalPages;
+@override@JsonKey(name: 'current_page', fromJson: PaginationMeta._toInt) final  int currentPage;
 
 /// Create a copy of PaginationMeta
 /// with the given fields replaced by the non-null parameter values.
@@ -778,14 +793,17 @@ class _PaginationMeta implements PaginationMeta {
 @pragma('vm:prefer-inline')
 _$PaginationMetaCopyWith<_PaginationMeta> get copyWith => __$PaginationMetaCopyWithImpl<_PaginationMeta>(this, _$identity);
 
-
+@override
+Map<String, dynamic> toJson() {
+  return _$PaginationMetaToJson(this, );
+}
 
 @override
 bool operator ==(Object other) {
   return identical(this, other) || (other.runtimeType == runtimeType&&other is _PaginationMeta&&(identical(other.itemCount, itemCount) || other.itemCount == itemCount)&&(identical(other.totalItems, totalItems) || other.totalItems == totalItems)&&(identical(other.itemsPerPage, itemsPerPage) || other.itemsPerPage == itemsPerPage)&&(identical(other.totalPages, totalPages) || other.totalPages == totalPages)&&(identical(other.currentPage, currentPage) || other.currentPage == currentPage));
 }
 
-
+@JsonKey(includeFromJson: false, includeToJson: false)
 @override
 int get hashCode => Object.hash(runtimeType,itemCount,totalItems,itemsPerPage,totalPages,currentPage);
 
@@ -802,7 +820,7 @@ abstract mixin class _$PaginationMetaCopyWith<$Res> implements $PaginationMetaCo
   factory _$PaginationMetaCopyWith(_PaginationMeta value, $Res Function(_PaginationMeta) _then) = __$PaginationMetaCopyWithImpl;
 @override @useResult
 $Res call({
-@JsonKey(name: 'item_count') int itemCount,@JsonKey(name: 'total_items') int totalItems,@JsonKey(name: 'items_per_page') int itemsPerPage,@JsonKey(name: 'total_pages') int totalPages,@JsonKey(name: 'current_page') int currentPage
+@JsonKey(name: 'item_count', fromJson: PaginationMeta._toInt) int itemCount,@JsonKey(name: 'total_items', fromJson: PaginationMeta._toInt) int totalItems,@JsonKey(name: 'items_per_page', fromJson: PaginationMeta._toInt) int itemsPerPage,@JsonKey(name: 'total_pages', fromJson: PaginationMeta._toInt) int totalPages,@JsonKey(name: 'current_page', fromJson: PaginationMeta._toInt) int currentPage
 });
 
 

@@ -103,10 +103,10 @@ flutter:
   # For details regarding adding assets from package dependencies, see
   # https://flutter.dev/to/asset-from-package
   assets:
-    - lib/assets/images/splash/
-    - lib/assets/icons/
-    - lib/assets/images/background/
-    - lib/assets/images/
+    - assets/images/splash/
+    - assets/icons/
+    - assets/images/background/
+    - assets/images/
   # To add custom fonts to your application, add a fonts section here,
   # in this "flutter" section. Each entry in this list should have a
   # "family" key with the font family name, and a "fonts" key with a
@@ -129,51 +129,51 @@ flutter:
   fonts:
     - family: HelveticaNeue
       fonts:
-        - asset: lib/assets/fonts/helvetica_neue/HelveticaNeueUltraLight.otf
+        - asset: assets/fonts/helvetica_neue/HelveticaNeueUltraLight.otf
           weight: 100
           style: normal
-        - asset: lib/assets/fonts/helvetica_neue/HelveticaNeueUltraLightItalic.otf
+        - asset: assets/fonts/helvetica_neue/HelveticaNeueUltraLightItalic.otf
           weight: 100
           style: italic
-        - asset: lib/assets/fonts/helvetica_neue/HelveticaNeueThin.otf
+        - asset: assets/fonts/helvetica_neue/HelveticaNeueThin.otf
           weight: 200
           style: normal
-        - asset: lib/assets/fonts/helvetica_neue/HelveticaNeueThinItalic.otf
+        - asset: assets/fonts/helvetica_neue/HelveticaNeueThinItalic.otf
           weight: 200
           style: italic
-        - asset: lib/assets/fonts/helvetica_neue/HelveticaNeueLight.otf
+        - asset: assets/fonts/helvetica_neue/HelveticaNeueLight.otf
           weight: 300
           style: normal
-        - asset: lib/assets/fonts/helvetica_neue/HelveticaNeueLightItalic.otf
+        - asset: assets/fonts/helvetica_neue/HelveticaNeueLightItalic.otf
           weight: 300
           style: italic
-        - asset: lib/assets/fonts/helvetica_neue/HelveticaNeueRoman.otf
+        - asset: assets/fonts/helvetica_neue/HelveticaNeueRoman.otf
           weight: 400
           style: normal
-        - asset: lib/assets/fonts/helvetica_neue/HelveticaNeueItalic.ttf
+        - asset: assets/fonts/helvetica_neue/HelveticaNeueItalic.ttf
           weight: 400
           style: italic
-        - asset: lib/assets/fonts/helvetica_neue/HelveticaNeueMedium.otf
+        - asset: assets/fonts/helvetica_neue/HelveticaNeueMedium.otf
           weight: 500
           style: normal
-        - asset: lib/assets/fonts/helvetica_neue/HelveticaNeueMediumItalic.otf
+        - asset: assets/fonts/helvetica_neue/HelveticaNeueMediumItalic.otf
           weight: 500
           style: italic
-        - asset: lib/assets/fonts/helvetica_neue/HelveticaNeueBold.otf
+        - asset: assets/fonts/helvetica_neue/HelveticaNeueBold.otf
           weight: 600
           style: normal
-        - asset: lib/assets/fonts/helvetica_neue/HelveticaNeueBoldItalic.otf
+        - asset: assets/fonts/helvetica_neue/HelveticaNeueBoldItalic.otf
           weight: 600
           style: italic
-        - asset: lib/assets/fonts/helvetica_neue/HelveticaNeueHeavy.otf
+        - asset: assets/fonts/helvetica_neue/HelveticaNeueHeavy.otf
           weight: 700
           style: normal
-        - asset: lib/assets/fonts/helvetica_neue/HelveticaNeueBold.otf
+        - asset: assets/fonts/helvetica_neue/HelveticaNeueBold.otf
           weight: 700
           style: italic
-        - asset: lib/assets/fonts/helvetica_neue/HelveticaNeueBlack.otf
+        - asset: assets/fonts/helvetica_neue/HelveticaNeueBlack.otf
           weight: 800
           style: normal
-        - asset: lib/assets/fonts/helvetica_neue/HelveticaNeueBlackItalic.otf
+        - asset: assets/fonts/helvetica_neue/HelveticaNeueBlackItalic.otf
           weight: 800
           style: italic

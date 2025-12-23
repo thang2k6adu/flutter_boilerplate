@@ -1,7 +1,7 @@
 import 'package:dio/dio.dart';
 import 'package:flutter_secure_storage/flutter_secure_storage.dart';
 import 'package:jt291_flutter_mobile/core/constants/constants.dart';
-import 'package:jt291_flutter_mobile/data/models/auth/token_model.dart';
+import 'package:jt291_flutter_mobile/data/models/auth/token_dto.dart';
 
 class ApiService {
   late Dio _dio;
@@ -77,7 +77,7 @@ class ApiService {
     );
   }
 
-  Future<TokenModel> refreshToken() async {
+  Future<TokenDto> refreshToken() async {
     try {
       final refreshToken = await _storage.read(
         key: StorageConstants.refreshTokenKey,
@@ -90,7 +90,7 @@ class ApiService {
         data: {'refresh_token': refreshToken},
       );
 
-      final tokens = TokenModel.fromJson(response.data['data']);
+      final tokens = TokenDto.fromJson(response.data['data']);
 
       await _storage.write(
         key: StorageConstants.accessTokenKey,

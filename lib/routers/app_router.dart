@@ -1,8 +1,9 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:go_router/go_router.dart';
-import '../data/providers/auth/auth_provider.dart';
-import '../features/auth/screens/app_initializer.dart';
+import 'package:jt291_flutter_mobile/domain/entities/users/user.dart';
+import '../presentation/auth/controllers/auth_controller.dart';
+import '../presentation/auth/screens/app_initializer.dart';
 import 'auth_routes.dart';
 import 'home_routes.dart';
 import '../core/constants/route_constants.dart';
@@ -14,8 +15,8 @@ class RouterRefreshNotifier extends ChangeNotifier {
 final routerRefreshNotifier = RouterRefreshNotifier();
 
 final routerProvider = Provider<GoRouter>((ref) {
-  ref.listen<AsyncValue>(
-    userAuthProvider,
+  ref.listen<User?>(
+    authControllerProvider,
     (previous, next) => routerRefreshNotifier.refresh(),
   );
 

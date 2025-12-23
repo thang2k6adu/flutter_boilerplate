@@ -8,7 +8,7 @@ abstract class BaseAsyncNotifier<T> extends AsyncNotifier<T> {
   Future<T> build() async {
     try {
       return await fetchData();
-    } catch (e, st) {
+    } catch (e) {
       // AsyncNotifier sẽ set state = AsyncError
       throw e;
     }
