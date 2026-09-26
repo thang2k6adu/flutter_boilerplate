@@ -3,14 +3,14 @@ import 'dart:async';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
-import 'package:jt291_flutter_mobile/core/constants/constants.dart';
-import 'package:jt291_flutter_mobile/shared/components.dart';
-import 'package:jt291_flutter_mobile/domain/entities/users/user.dart';
-import 'package:jt291_flutter_mobile/domain/usecases/auth/login_with_provider_usecase.dart';
-import 'package:jt291_flutter_mobile/domain/usecases/auth/login_with_password_usecase.dart';
-import 'package:jt291_flutter_mobile/domain/usecases/auth/logout_usecase.dart';
-import 'package:jt291_flutter_mobile/domain/usecases/auth/login_usecase.dart';
-import 'package:jt291_flutter_mobile/providers/usecases_provider.dart';
+import 'package:pp191225/core/constants/constants.dart';
+import 'package:pp191225/shared/components.dart';
+import 'package:pp191225/domain/entities/users/user.dart';
+import 'package:pp191225/domain/usecases/auth/login_with_provider_usecase.dart';
+import 'package:pp191225/domain/usecases/auth/login_with_password_usecase.dart';
+import 'package:pp191225/domain/usecases/auth/logout_usecase.dart';
+import 'package:pp191225/domain/usecases/auth/login_usecase.dart';
+import 'package:pp191225/providers/usecases_provider.dart';
 
 class AuthController extends AutoDisposeNotifier<User?> {
   late final LoginWithProviderUseCase _loginWithProviderUseCase;

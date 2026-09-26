@@ -1,7 +1,7 @@
-import 'package:jt291_flutter_mobile/core/utils/either.dart';
-import 'package:jt291_flutter_mobile/domain/entities/auth/auth_response.dart';
-import 'package:jt291_flutter_mobile/domain/entities/auth/token.dart';
-import 'package:jt291_flutter_mobile/domain/failures/failures.dart';
+import 'package:pp191225/core/utils/either.dart';
+import 'package:pp191225/domain/entities/auth/auth_response.dart';
+import 'package:pp191225/domain/entities/auth/token.dart';
+import 'package:pp191225/domain/failures/failures.dart';
 
 abstract class AuthRepository {
   Future<Either<Failure, AuthResponse>> login({

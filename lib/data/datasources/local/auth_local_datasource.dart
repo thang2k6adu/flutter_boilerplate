@@ -1,4 +1,4 @@
-import 'package:jt291_flutter_mobile/data/models/auth/token_dto.dart';
+import 'package:pp191225/data/models/auth/token_dto.dart';
 
 /// Authentication local data source interface
 /// Handles token storage in secure storage

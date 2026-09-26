@@ -1,7 +1,7 @@
 import 'package:freezed_annotation/freezed_annotation.dart';
-import 'package:jt291_flutter_mobile/data/models/auth/token_dto.dart';
-import 'package:jt291_flutter_mobile/data/models/users/user_dto.dart';
-import 'package:jt291_flutter_mobile/domain/entities/auth/auth_response.dart';
+import 'package:pp191225/data/models/auth/token_dto.dart';
+import 'package:pp191225/data/models/users/user_dto.dart';
+import 'package:pp191225/domain/entities/auth/auth_response.dart';
 
 part 'auth_response_dto.freezed.dart';
 part 'auth_response_dto.g.dart';

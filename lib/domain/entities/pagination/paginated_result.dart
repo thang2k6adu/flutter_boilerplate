@@ -1,4 +1,4 @@
-import 'package:jt291_flutter_mobile/data/models/base/api_response.dart';
+import 'package:pp191225/data/models/base/api_response.dart';
 
 /// Domain-level pagination model used by usecases and presentation
 class PaginatedResult<T> {

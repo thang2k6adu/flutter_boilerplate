@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
-import 'package:jt291_flutter_mobile/assets/assets.dart';
+import 'package:pp191225/assets/assets.dart';
 
 class SplashScreen extends ConsumerStatefulWidget {
   final String? title;

@@ -3,7 +3,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:flutter_dotenv/flutter_dotenv.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
-import 'package:jt291_flutter_mobile/routers/app_router.dart';
+import 'package:pp191225/routers/app_router.dart';
 
 import 'core/constants/constants.dart';
 import 'core/theme/app_colors.dart';

@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:go_router/go_router.dart';
-import 'package:jt291_flutter_mobile/domain/entities/users/user.dart';
+import 'package:pp191225/domain/entities/users/user.dart';
 import '../presentation/auth/controllers/auth_controller.dart';
 import '../presentation/auth/screens/app_initializer.dart';
 import 'auth_routes.dart';

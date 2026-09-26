@@ -1,7 +1,7 @@
 // Function Go Router
 import 'package:flutter/material.dart';
 import 'package:go_router/go_router.dart';
-import 'package:jt291_flutter_mobile/core/constants/route_constants.dart';
+import 'package:pp191225/core/constants/route_constants.dart';
 
 void pushScreen(BuildContext context, String path, {Object? extra}) =>
     GoRouter.of(context).push(path, extra: extra);

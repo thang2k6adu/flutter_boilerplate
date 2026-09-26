@@ -1,6 +1,6 @@
-import 'package:jt291_flutter_mobile/data/models/auth/auth_response_dto.dart';
-import 'package:jt291_flutter_mobile/data/models/auth/token_dto.dart';
-import 'package:jt291_flutter_mobile/data/models/base/api_response.dart';
+import 'package:pp191225/data/models/auth/auth_response_dto.dart';
+import 'package:pp191225/data/models/auth/token_dto.dart';
+import 'package:pp191225/data/models/base/api_response.dart';
 
 /// Authentication remote data source interface
 /// Handles authentication API calls

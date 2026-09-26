@@ -1,11 +1,11 @@
-import 'package:jt291_flutter_mobile/core/utils/either.dart';
-import 'package:jt291_flutter_mobile/data/datasources/local/auth_local_datasource.dart';
-import 'package:jt291_flutter_mobile/data/datasources/remote/auth_remote_datasource.dart';
-import 'package:jt291_flutter_mobile/data/models/auth/token_dto.dart';
-import 'package:jt291_flutter_mobile/domain/entities/auth/auth_response.dart';
-import 'package:jt291_flutter_mobile/domain/entities/auth/token.dart';
-import 'package:jt291_flutter_mobile/domain/failures/failures.dart';
-import 'package:jt291_flutter_mobile/domain/repositories/auth_repository.dart';
+import 'package:pp191225/core/utils/either.dart';
+import 'package:pp191225/data/datasources/local/auth_local_datasource.dart';
+import 'package:pp191225/data/datasources/remote/auth_remote_datasource.dart';
+import 'package:pp191225/data/models/auth/token_dto.dart';
+import 'package:pp191225/domain/entities/auth/auth_response.dart';
+import 'package:pp191225/domain/entities/auth/token.dart';
+import 'package:pp191225/domain/failures/failures.dart';
+import 'package:pp191225/domain/repositories/auth_repository.dart';
 
 class AuthRepositoryImpl implements AuthRepository {
   final AuthRemoteDataSource remoteDataSource;

@@ -1,7 +1,7 @@
 // base_paginated_notifier.dart
 import 'package:flutter/foundation.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
-import 'package:jt291_flutter_mobile/data/models/base/api_response.dart';
+import 'package:pp191225/data/models/base/api_response.dart';
 
 /// Response wrapper for paginated API calls
 class CachedPage<T> {

@@ -1,5 +1,5 @@
 import 'package:freezed_annotation/freezed_annotation.dart';
-import 'package:jt291_flutter_mobile/domain/entities/auth/token.dart';
+import 'package:pp191225/domain/entities/auth/token.dart';
 
 part 'token_dto.freezed.dart';
 part 'token_dto.g.dart';

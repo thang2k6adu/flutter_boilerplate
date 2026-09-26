@@ -1,5 +1,5 @@
 import 'package:freezed_annotation/freezed_annotation.dart';
-import 'package:jt291_flutter_mobile/domain/entities/users/user.dart';
+import 'package:pp191225/domain/entities/users/user.dart';
 
 part 'user_dto.freezed.dart';
 part 'user_dto.g.dart';

@@ -1,6 +1,6 @@
-import 'package:jt291_flutter_mobile/core/utils/either.dart';
-import 'package:jt291_flutter_mobile/domain/entities/users/user.dart';
-import 'package:jt291_flutter_mobile/domain/failures/failures.dart';
+import 'package:pp191225/core/utils/either.dart';
+import 'package:pp191225/domain/entities/users/user.dart';
+import 'package:pp191225/domain/failures/failures.dart';
 
 /// User repository interface
 /// Defines the contract for user operations

@@ -1,4 +1,4 @@
-name: jt291_flutter_mobile
+name: pp191225
 description: "A new Flutter project."
 # The following line prevents the package from being accidentally published to
 # pub.dev using `flutter pub publish`. This is preferred for private packages.
@@ -107,6 +107,7 @@ flutter:
     - assets/images/splash/
     - assets/icons/
     - assets/images/background/
+    - assets/images/welcome/
     - assets/images/
     - .env
   # To add custom fonts to your application, add a fonts section here,
@@ -129,6 +130,13 @@ flutter:
   # For details regarding fonts from package dependencies,
   # see https://flutter.dev/to/font-from-package
   fonts:
+    - family: Poppins
+      fonts:
+        - asset: assets/fonts/poppins/Poppins-Regular.ttf
+        - asset: assets/fonts/poppins/Poppins-Medium.ttf
+          weight: 500
+        - asset: assets/fonts/poppins/Poppins-SemiBold.ttf
+          weight: 600
     - family: HelveticaNeue
       fonts:
         - asset: assets/fonts/helvetica_neue/HelveticaNeueUltraLight.otf

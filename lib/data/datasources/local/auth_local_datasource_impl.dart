@@ -1,7 +1,7 @@
 import 'package:flutter_secure_storage/flutter_secure_storage.dart';
-import 'package:jt291_flutter_mobile/core/constants/constants.dart';
-import 'package:jt291_flutter_mobile/data/datasources/local/auth_local_datasource.dart';
-import 'package:jt291_flutter_mobile/data/models/auth/token_dto.dart';
+import 'package:pp191225/core/constants/constants.dart';
+import 'package:pp191225/data/datasources/local/auth_local_datasource.dart';
+import 'package:pp191225/data/models/auth/token_dto.dart';
 
 /// Implementation of AuthLocalDataSource using FlutterSecureStorage
 class AuthLocalDataSourceImpl implements AuthLocalDataSource {

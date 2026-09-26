@@ -1,5 +1,5 @@
-import 'package:jt291_flutter_mobile/domain/entities/auth/token.dart';
-import 'package:jt291_flutter_mobile/domain/entities/users/user.dart';
+import 'package:pp191225/domain/entities/auth/token.dart';
+import 'package:pp191225/domain/entities/users/user.dart';
 
 /// Auth response entity - Represents authentication response in domain layer
 /// Used for login/register operations

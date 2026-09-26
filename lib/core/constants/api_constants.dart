@@ -22,7 +22,7 @@ class ApiConstants {
   }
 
   static String get appName {
-    return dotenv.env['APP_NAME'] ?? 'JT291 Mobile App';
+    return dotenv.env['APP_NAME'] ?? 'PP191225';
   }
 
   static String get appVersion {

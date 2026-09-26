@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
-import 'package:jt291_flutter_mobile/assets/assets.dart';
-import 'package:jt291_flutter_mobile/core/core.dart';
+import 'package:pp191225/assets/assets.dart';
+import 'package:pp191225/core/core.dart';
 
 class NotFoundWidget extends StatelessWidget {
   final String title;

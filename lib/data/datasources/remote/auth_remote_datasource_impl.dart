@@ -1,9 +1,9 @@
-import 'package:jt291_flutter_mobile/core/constants/api_endpoints.dart';
-import 'package:jt291_flutter_mobile/data/datasources/remote/auth_remote_datasource.dart';
-import 'package:jt291_flutter_mobile/data/models/auth/auth_response_dto.dart';
-import 'package:jt291_flutter_mobile/data/models/auth/token_dto.dart';
-import 'package:jt291_flutter_mobile/data/models/base/api_response.dart';
-import 'package:jt291_flutter_mobile/data/services/api_service.dart';
+import 'package:pp191225/core/constants/api_endpoints.dart';
+import 'package:pp191225/data/datasources/remote/auth_remote_datasource.dart';
+import 'package:pp191225/data/models/auth/auth_response_dto.dart';
+import 'package:pp191225/data/models/auth/token_dto.dart';
+import 'package:pp191225/data/models/base/api_response.dart';
+import 'package:pp191225/data/services/api_service.dart';
 
 /// Implementation of AuthRemoteDataSource using ApiService
 class AuthRemoteDataSourceImpl implements AuthRemoteDataSource {

@@ -1,6 +1,6 @@
 // Pill tag with thumbnail and label (e.g., "Art")
 import 'package:flutter/material.dart';
-import 'package:jt291_flutter_mobile/core/theme/app_colors.dart';
+import 'package:pp191225/core/theme/app_colors.dart';
 
 /// Pill tag có thumbnail nhỏ ở trái, label ở phải, border nhẹ.
 /// - [thumbnail]: widget nhỏ ở trái (Image, Icon, Container...)

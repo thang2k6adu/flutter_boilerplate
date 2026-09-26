@@ -1,8 +1,8 @@
-import 'package:jt291_flutter_mobile/core/utils/either.dart';
-import 'package:jt291_flutter_mobile/data/datasources/remote/user_remote_datasource.dart';
-import 'package:jt291_flutter_mobile/domain/entities/users/user.dart';
-import 'package:jt291_flutter_mobile/domain/failures/failures.dart';
-import 'package:jt291_flutter_mobile/domain/repositories/user_repository.dart';
+import 'package:pp191225/core/utils/either.dart';
+import 'package:pp191225/data/datasources/remote/user_remote_datasource.dart';
+import 'package:pp191225/domain/entities/users/user.dart';
+import 'package:pp191225/domain/failures/failures.dart';
+import 'package:pp191225/domain/repositories/user_repository.dart';
 
 /// Implementation of UserRepository
 class UserRepositoryImpl implements UserRepository {
