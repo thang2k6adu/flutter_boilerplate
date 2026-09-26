@@ -1,7 +1,7 @@
 import 'package:dio/dio.dart';
 import 'package:flutter_secure_storage/flutter_secure_storage.dart';
-import 'package:jt291_flutter_mobile/core/constants/constants.dart';
-import 'package:jt291_flutter_mobile/data/models/auth/token_dto.dart';
+import 'package:pp191225/core/constants/constants.dart';
+import 'package:pp191225/data/models/auth/token_dto.dart';
 
 class ApiService {
   late Dio _dio;
@@ -87,7 +87,7 @@ class ApiService {
 
       final response = await refreshDio.post(
         '/auth/refresh',
-        data: {'refresh_token': refreshToken},
+        data: {'refreshToken': refreshToken},
       );
 
       final tokens = TokenDto.fromJson(response.data['data']);

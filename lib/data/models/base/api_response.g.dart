@@ -54,24 +54,27 @@ Map<String, dynamic> _$PaginatedDataToJson<T>(
   'meta': instance.meta,
 };
 
-_PaginationMeta _$PaginationMetaFromJson(Map<String, dynamic> json) =>
-    _PaginationMeta(
-      itemCount: json['item_count'] == null
-          ? 0
-          : PaginationMeta._toInt(json['item_count']),
-      totalItems: json['total_items'] == null
-          ? 0
-          : PaginationMeta._toInt(json['total_items']),
-      itemsPerPage: json['items_per_page'] == null
-          ? 10
-          : PaginationMeta._toInt(json['items_per_page']),
-      totalPages: json['total_pages'] == null
-          ? 0
-          : PaginationMeta._toInt(json['total_pages']),
-      currentPage: json['current_page'] == null
-          ? 1
-          : PaginationMeta._toInt(json['current_page']),
-    );
+_PaginationMeta _$PaginationMetaFromJson(
+  Map<String, dynamic> json,
+) => _PaginationMeta(
+  itemCount: PaginationMeta._readEither(json, 'item_count') == null
+      ? 0
+      : PaginationMeta._toInt(PaginationMeta._readEither(json, 'item_count')),
+  totalItems: PaginationMeta._readEither(json, 'total_items') == null
+      ? 0
+      : PaginationMeta._toInt(PaginationMeta._readEither(json, 'total_items')),
+  itemsPerPage: PaginationMeta._readEither(json, 'items_per_page') == null
+      ? 10
+      : PaginationMeta._toInt(
+          PaginationMeta._readEither(json, 'items_per_page'),
+        ),
+  totalPages: PaginationMeta._readEither(json, 'total_pages') == null
+      ? 0
+      : PaginationMeta._toInt(PaginationMeta._readEither(json, 'total_pages')),
+  currentPage: PaginationMeta._readEither(json, 'current_page') == null
+      ? 1
+      : PaginationMeta._toInt(PaginationMeta._readEither(json, 'current_page')),
+);
 
 Map<String, dynamic> _$PaginationMetaToJson(_PaginationMeta instance) =>
     <String, dynamic>{

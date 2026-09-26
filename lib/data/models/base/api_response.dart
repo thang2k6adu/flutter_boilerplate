@@ -88,15 +88,24 @@ abstract class PaginatedData<T> with _$PaginatedData<T> {
 @freezed
 abstract class PaginationMeta with _$PaginationMeta {
   const factory PaginationMeta({
-    @Default(0) @JsonKey(name: 'item_count', fromJson: PaginationMeta._toInt) int itemCount,
-    @Default(0) @JsonKey(name: 'total_items', fromJson: PaginationMeta._toInt) int totalItems,
-    @Default(10) @JsonKey(name: 'items_per_page', fromJson: PaginationMeta._toInt) int itemsPerPage,
-    @Default(0) @JsonKey(name: 'total_pages', fromJson: PaginationMeta._toInt) int totalPages,
-    @Default(1) @JsonKey(name: 'current_page', fromJson: PaginationMeta._toInt) int currentPage,
+    @Default(0) @JsonKey(name: 'item_count', readValue: PaginationMeta._readEither, fromJson: PaginationMeta._toInt) int itemCount,
+    @Default(0) @JsonKey(name: 'total_items', readValue: PaginationMeta._readEither, fromJson: PaginationMeta._toInt) int totalItems,
+    @Default(10) @JsonKey(name: 'items_per_page', readValue: PaginationMeta._readEither, fromJson: PaginationMeta._toInt) int itemsPerPage,
+    @Default(0) @JsonKey(name: 'total_pages', readValue: PaginationMeta._readEither, fromJson: PaginationMeta._toInt) int totalPages,
+    @Default(1) @JsonKey(name: 'current_page', readValue: PaginationMeta._readEither, fromJson: PaginationMeta._toInt) int currentPage,
   }) = _PaginationMeta;
 
   factory PaginationMeta.fromJson(Map<String, dynamic> json) =>
       _$PaginationMetaFromJson(json);
+
+  /// Backend (Nest/Java) trả camelCase (itemCount), bản cũ trả snake_case (item_count): đọc được cả hai.
+  static Object? _readEither(Map<dynamic, dynamic> json, String snakeKey) {
+    final camelKey = snakeKey.replaceAllMapped(
+      RegExp(r'_([a-z])'),
+      (m) => m[1]!.toUpperCase(),
+    );
+    return json[snakeKey] ?? json[camelKey];
+  }
 
   static int _toInt(dynamic v) {
     if (v == null) return 0;

@@ -580,7 +580,7 @@ $PaginationMetaCopyWith<$Res> get meta {
 /// @nodoc
 mixin _$PaginationMeta {
 
-@JsonKey(name: 'item_count', fromJson: PaginationMeta._toInt) int get itemCount;@JsonKey(name: 'total_items', fromJson: PaginationMeta._toInt) int get totalItems;@JsonKey(name: 'items_per_page', fromJson: PaginationMeta._toInt) int get itemsPerPage;@JsonKey(name: 'total_pages', fromJson: PaginationMeta._toInt) int get totalPages;@JsonKey(name: 'current_page', fromJson: PaginationMeta._toInt) int get currentPage;
+@JsonKey(name: 'item_count', readValue: PaginationMeta._readEither, fromJson: PaginationMeta._toInt) int get itemCount;@JsonKey(name: 'total_items', readValue: PaginationMeta._readEither, fromJson: PaginationMeta._toInt) int get totalItems;@JsonKey(name: 'items_per_page', readValue: PaginationMeta._readEither, fromJson: PaginationMeta._toInt) int get itemsPerPage;@JsonKey(name: 'total_pages', readValue: PaginationMeta._readEither, fromJson: PaginationMeta._toInt) int get totalPages;@JsonKey(name: 'current_page', readValue: PaginationMeta._readEither, fromJson: PaginationMeta._toInt) int get currentPage;
 /// Create a copy of PaginationMeta
 /// with the given fields replaced by the non-null parameter values.
 @JsonKey(includeFromJson: false, includeToJson: false)
@@ -613,7 +613,7 @@ abstract mixin class $PaginationMetaCopyWith<$Res>  {
   factory $PaginationMetaCopyWith(PaginationMeta value, $Res Function(PaginationMeta) _then) = _$PaginationMetaCopyWithImpl;
 @useResult
 $Res call({
-@JsonKey(name: 'item_count', fromJson: PaginationMeta._toInt) int itemCount,@JsonKey(name: 'total_items', fromJson: PaginationMeta._toInt) int totalItems,@JsonKey(name: 'items_per_page', fromJson: PaginationMeta._toInt) int itemsPerPage,@JsonKey(name: 'total_pages', fromJson: PaginationMeta._toInt) int totalPages,@JsonKey(name: 'current_page', fromJson: PaginationMeta._toInt) int currentPage
+@JsonKey(name: 'item_count', readValue: PaginationMeta._readEither, fromJson: PaginationMeta._toInt) int itemCount,@JsonKey(name: 'total_items', readValue: PaginationMeta._readEither, fromJson: PaginationMeta._toInt) int totalItems,@JsonKey(name: 'items_per_page', readValue: PaginationMeta._readEither, fromJson: PaginationMeta._toInt) int itemsPerPage,@JsonKey(name: 'total_pages', readValue: PaginationMeta._readEither, fromJson: PaginationMeta._toInt) int totalPages,@JsonKey(name: 'current_page', readValue: PaginationMeta._readEither, fromJson: PaginationMeta._toInt) int currentPage
 });
 
 
@@ -722,7 +722,7 @@ return $default(_that);case _:
 /// }
 /// ```
 
-@optionalTypeArgs TResult maybeWhen<TResult extends Object?>(TResult Function(@JsonKey(name: 'item_count', fromJson: PaginationMeta._toInt)  int itemCount, @JsonKey(name: 'total_items', fromJson: PaginationMeta._toInt)  int totalItems, @JsonKey(name: 'items_per_page', fromJson: PaginationMeta._toInt)  int itemsPerPage, @JsonKey(name: 'total_pages', fromJson: PaginationMeta._toInt)  int totalPages, @JsonKey(name: 'current_page', fromJson: PaginationMeta._toInt)  int currentPage)?  $default,{required TResult orElse(),}) {final _that = this;
+@optionalTypeArgs TResult maybeWhen<TResult extends Object?>(TResult Function(@JsonKey(name: 'item_count', readValue: PaginationMeta._readEither, fromJson: PaginationMeta._toInt)  int itemCount, @JsonKey(name: 'total_items', readValue: PaginationMeta._readEither, fromJson: PaginationMeta._toInt)  int totalItems, @JsonKey(name: 'items_per_page', readValue: PaginationMeta._readEither, fromJson: PaginationMeta._toInt)  int itemsPerPage, @JsonKey(name: 'total_pages', readValue: PaginationMeta._readEither, fromJson: PaginationMeta._toInt)  int totalPages, @JsonKey(name: 'current_page', readValue: PaginationMeta._readEither, fromJson: PaginationMeta._toInt)  int currentPage)?  $default,{required TResult orElse(),}) {final _that = this;
 switch (_that) {
 case _PaginationMeta() when $default != null:
 return $default(_that.itemCount,_that.totalItems,_that.itemsPerPage,_that.totalPages,_that.currentPage);case _:
@@ -743,7 +743,7 @@ return $default(_that.itemCount,_that.totalItems,_that.itemsPerPage,_that.totalP
 /// }
 /// ```
 
-@optionalTypeArgs TResult when<TResult extends Object?>(TResult Function(@JsonKey(name: 'item_count', fromJson: PaginationMeta._toInt)  int itemCount, @JsonKey(name: 'total_items', fromJson: PaginationMeta._toInt)  int totalItems, @JsonKey(name: 'items_per_page', fromJson: PaginationMeta._toInt)  int itemsPerPage, @JsonKey(name: 'total_pages', fromJson: PaginationMeta._toInt)  int totalPages, @JsonKey(name: 'current_page', fromJson: PaginationMeta._toInt)  int currentPage)  $default,) {final _that = this;
+@optionalTypeArgs TResult when<TResult extends Object?>(TResult Function(@JsonKey(name: 'item_count', readValue: PaginationMeta._readEither, fromJson: PaginationMeta._toInt)  int itemCount, @JsonKey(name: 'total_items', readValue: PaginationMeta._readEither, fromJson: PaginationMeta._toInt)  int totalItems, @JsonKey(name: 'items_per_page', readValue: PaginationMeta._readEither, fromJson: PaginationMeta._toInt)  int itemsPerPage, @JsonKey(name: 'total_pages', readValue: PaginationMeta._readEither, fromJson: PaginationMeta._toInt)  int totalPages, @JsonKey(name: 'current_page', readValue: PaginationMeta._readEither, fromJson: PaginationMeta._toInt)  int currentPage)  $default,) {final _that = this;
 switch (_that) {
 case _PaginationMeta():
 return $default(_that.itemCount,_that.totalItems,_that.itemsPerPage,_that.totalPages,_that.currentPage);case _:
@@ -763,7 +763,7 @@ return $default(_that.itemCount,_that.totalItems,_that.itemsPerPage,_that.totalP
 /// }
 /// ```
 
-@optionalTypeArgs TResult? whenOrNull<TResult extends Object?>(TResult? Function(@JsonKey(name: 'item_count', fromJson: PaginationMeta._toInt)  int itemCount, @JsonKey(name: 'total_items', fromJson: PaginationMeta._toInt)  int totalItems, @JsonKey(name: 'items_per_page', fromJson: PaginationMeta._toInt)  int itemsPerPage, @JsonKey(name: 'total_pages', fromJson: PaginationMeta._toInt)  int totalPages, @JsonKey(name: 'current_page', fromJson: PaginationMeta._toInt)  int currentPage)?  $default,) {final _that = this;
+@optionalTypeArgs TResult? whenOrNull<TResult extends Object?>(TResult? Function(@JsonKey(name: 'item_count', readValue: PaginationMeta._readEither, fromJson: PaginationMeta._toInt)  int itemCount, @JsonKey(name: 'total_items', readValue: PaginationMeta._readEither, fromJson: PaginationMeta._toInt)  int totalItems, @JsonKey(name: 'items_per_page', readValue: PaginationMeta._readEither, fromJson: PaginationMeta._toInt)  int itemsPerPage, @JsonKey(name: 'total_pages', readValue: PaginationMeta._readEither, fromJson: PaginationMeta._toInt)  int totalPages, @JsonKey(name: 'current_page', readValue: PaginationMeta._readEither, fromJson: PaginationMeta._toInt)  int currentPage)?  $default,) {final _that = this;
 switch (_that) {
 case _PaginationMeta() when $default != null:
 return $default(_that.itemCount,_that.totalItems,_that.itemsPerPage,_that.totalPages,_that.currentPage);case _:
@@ -778,14 +778,14 @@ return $default(_that.itemCount,_that.totalItems,_that.itemsPerPage,_that.totalP
 @JsonSerializable()
 
 class _PaginationMeta implements PaginationMeta {
-  const _PaginationMeta({@JsonKey(name: 'item_count', fromJson: PaginationMeta._toInt) this.itemCount = 0, @JsonKey(name: 'total_items', fromJson: PaginationMeta._toInt) this.totalItems = 0, @JsonKey(name: 'items_per_page', fromJson: PaginationMeta._toInt) this.itemsPerPage = 10, @JsonKey(name: 'total_pages', fromJson: PaginationMeta._toInt) this.totalPages = 0, @JsonKey(name: 'current_page', fromJson: PaginationMeta._toInt) this.currentPage = 1});
+  const _PaginationMeta({@JsonKey(name: 'item_count', readValue: PaginationMeta._readEither, fromJson: PaginationMeta._toInt) this.itemCount = 0, @JsonKey(name: 'total_items', readValue: PaginationMeta._readEither, fromJson: PaginationMeta._toInt) this.totalItems = 0, @JsonKey(name: 'items_per_page', readValue: PaginationMeta._readEither, fromJson: PaginationMeta._toInt) this.itemsPerPage = 10, @JsonKey(name: 'total_pages', readValue: PaginationMeta._readEither, fromJson: PaginationMeta._toInt) this.totalPages = 0, @JsonKey(name: 'current_page', readValue: PaginationMeta._readEither, fromJson: PaginationMeta._toInt) this.currentPage = 1});
   factory _PaginationMeta.fromJson(Map<String, dynamic> json) => _$PaginationMetaFromJson(json);
 
-@override@JsonKey(name: 'item_count', fromJson: PaginationMeta._toInt) final  int itemCount;
-@override@JsonKey(name: 'total_items', fromJson: PaginationMeta._toInt) final  int totalItems;
-@override@JsonKey(name: 'items_per_page', fromJson: PaginationMeta._toInt) final  int itemsPerPage;
-@override@JsonKey(name: 'total_pages', fromJson: PaginationMeta._toInt) final  int totalPages;
-@override@JsonKey(name: 'current_page', fromJson: PaginationMeta._toInt) final  int currentPage;
+@override@JsonKey(name: 'item_count', readValue: PaginationMeta._readEither, fromJson: PaginationMeta._toInt) final  int itemCount;
+@override@JsonKey(name: 'total_items', readValue: PaginationMeta._readEither, fromJson: PaginationMeta._toInt) final  int totalItems;
+@override@JsonKey(name: 'items_per_page', readValue: PaginationMeta._readEither, fromJson: PaginationMeta._toInt) final  int itemsPerPage;
+@override@JsonKey(name: 'total_pages', readValue: PaginationMeta._readEither, fromJson: PaginationMeta._toInt) final  int totalPages;
+@override@JsonKey(name: 'current_page', readValue: PaginationMeta._readEither, fromJson: PaginationMeta._toInt) final  int currentPage;
 
 /// Create a copy of PaginationMeta
 /// with the given fields replaced by the non-null parameter values.
@@ -820,7 +820,7 @@ abstract mixin class _$PaginationMetaCopyWith<$Res> implements $PaginationMetaCo
   factory _$PaginationMetaCopyWith(_PaginationMeta value, $Res Function(_PaginationMeta) _then) = __$PaginationMetaCopyWithImpl;
 @override @useResult
 $Res call({
-@JsonKey(name: 'item_count', fromJson: PaginationMeta._toInt) int itemCount,@JsonKey(name: 'total_items', fromJson: PaginationMeta._toInt) int totalItems,@JsonKey(name: 'items_per_page', fromJson: PaginationMeta._toInt) int itemsPerPage,@JsonKey(name: 'total_pages', fromJson: PaginationMeta._toInt) int totalPages,@JsonKey(name: 'current_page', fromJson: PaginationMeta._toInt) int currentPage
+@JsonKey(name: 'item_count', readValue: PaginationMeta._readEither, fromJson: PaginationMeta._toInt) int itemCount,@JsonKey(name: 'total_items', readValue: PaginationMeta._readEither, fromJson: PaginationMeta._toInt) int totalItems,@JsonKey(name: 'items_per_page', readValue: PaginationMeta._readEither, fromJson: PaginationMeta._toInt) int itemsPerPage,@JsonKey(name: 'total_pages', readValue: PaginationMeta._readEither, fromJson: PaginationMeta._toInt) int totalPages,@JsonKey(name: 'current_page', readValue: PaginationMeta._readEither, fromJson: PaginationMeta._toInt) int currentPage
 });
 
 
