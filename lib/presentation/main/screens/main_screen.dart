@@ -1,7 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
-import 'package:jt291_flutter_mobile/core/theme/app_colors.dart';
-import 'package:jt291_flutter_mobile/presentation/auth/controllers/auth_controller.dart';
+import 'package:pp191225/core/theme/app_colors.dart';
+import 'package:pp191225/presentation/auth/controllers/auth_controller.dart';
+import 'package:pp191225/presentation/task/screens/task_list_screen.dart';
 
 class MainScreen extends ConsumerStatefulWidget {
   const MainScreen({super.key});
@@ -24,7 +25,7 @@ class _MainScreenState extends ConsumerState<MainScreen> {
     
     // TODO: Replace with your actual screens
     final List<Widget> children = [
-      const Center(child: Text("Home Screen")),
+      const TaskListScreen(),
       const Center(child: Text("Search Screen")),
       const Center(child: Text("Notifications Screen")),
       const Center(child: Text("Profile Screen")),
@@ -55,8 +56,8 @@ class _MainScreenState extends ConsumerState<MainScreen> {
         unselectedItemColor: Colors.grey,
         items: const [
           BottomNavigationBarItem(
-            icon: Icon(Icons.home),
-            label: "Home",
+            icon: Icon(Icons.checklist),
+            label: "Tasks",
           ),
           BottomNavigationBarItem(
             icon: Icon(Icons.search),

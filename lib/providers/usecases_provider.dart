@@ -1,13 +1,17 @@
 import 'package:flutter_riverpod/flutter_riverpod.dart';
-import 'package:jt291_flutter_mobile/domain/usecases/auth/login_usecase.dart';
-import 'package:jt291_flutter_mobile/domain/usecases/auth/login_with_provider_usecase.dart';
-import 'package:jt291_flutter_mobile/domain/usecases/auth/login_with_password_usecase.dart';
-import 'package:jt291_flutter_mobile/domain/usecases/auth/logout_usecase.dart';
-import 'package:jt291_flutter_mobile/domain/usecases/auth/register_usecase.dart';
-import 'package:jt291_flutter_mobile/domain/usecases/user/get_current_user_usecase.dart';
-import 'package:jt291_flutter_mobile/domain/usecases/user/update_user_profile_usecase.dart';
-import 'package:jt291_flutter_mobile/providers/repositories_provider.dart';
-import 'package:jt291_flutter_mobile/providers/datasources_provider.dart';
+import 'package:pp191225/domain/usecases/auth/login_usecase.dart';
+import 'package:pp191225/domain/usecases/auth/login_with_provider_usecase.dart';
+import 'package:pp191225/domain/usecases/auth/login_with_password_usecase.dart';
+import 'package:pp191225/domain/usecases/auth/logout_usecase.dart';
+import 'package:pp191225/domain/usecases/auth/register_usecase.dart';
+import 'package:pp191225/domain/usecases/task/create_task_usecase.dart';
+import 'package:pp191225/domain/usecases/task/delete_task_usecase.dart';
+import 'package:pp191225/domain/usecases/task/get_tasks_usecase.dart';
+import 'package:pp191225/domain/usecases/task/update_task_usecase.dart';
+import 'package:pp191225/domain/usecases/user/get_current_user_usecase.dart';
+import 'package:pp191225/domain/usecases/user/update_user_profile_usecase.dart';
+import 'package:pp191225/providers/repositories_provider.dart';
+import 'package:pp191225/providers/datasources_provider.dart';
 
 // ============================================================================
 // Auth UseCases
@@ -59,4 +63,32 @@ final getCurrentUserUseCaseProvider = Provider<GetCurrentUserUseCase>((ref) {
 final updateUserProfileUseCaseProvider = Provider<UpdateUserProfileUseCase>((ref) {
   final repository = ref.watch(userRepositoryProvider);
   return UpdateUserProfileUseCase(repository);
+});
+
+// ============================================================================
+// Task UseCases
+// ============================================================================
+
+/// Provide GetTasksUseCase
+final getTasksUseCaseProvider = Provider<GetTasksUseCase>((ref) {
+  final repository = ref.watch(taskRepositoryProvider);
+  return GetTasksUseCase(repository);
+});
+
+/// Provide CreateTaskUseCase
+final createTaskUseCaseProvider = Provider<CreateTaskUseCase>((ref) {
+  final repository = ref.watch(taskRepositoryProvider);
+  return CreateTaskUseCase(repository);
+});
+
+/// Provide UpdateTaskUseCase
+final updateTaskUseCaseProvider = Provider<UpdateTaskUseCase>((ref) {
+  final repository = ref.watch(taskRepositoryProvider);
+  return UpdateTaskUseCase(repository);
+});
+
+/// Provide DeleteTaskUseCase
+final deleteTaskUseCaseProvider = Provider<DeleteTaskUseCase>((ref) {
+  final repository = ref.watch(taskRepositoryProvider);
+  return DeleteTaskUseCase(repository);
 });

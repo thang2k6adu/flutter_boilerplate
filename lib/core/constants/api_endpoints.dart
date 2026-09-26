@@ -11,7 +11,10 @@ class ApiEndpoints {
 
   static const String userProfile = '/users/profile';
   static String getUserById(String userId) => '/users/$userId';
-  
+
+  static const String tasks = '/tasks';
+  static String getTaskById(String taskId) => '/tasks/$taskId';
+
   static const String healthCheck = '/health';
   
   static const String versionCheck = '/version';
