@@ -13,7 +13,10 @@ abstract class UserDto with _$UserDto {
   const factory UserDto({
     required String id,
     required String email,
-    required String name,
+    /// Backend (Nest/Java) trả firstName + lastName thay vì name
+    String? name,
+    String? firstName,
+    String? lastName,
     String? avatar,
     @Default('user') String role,
   }) = _UserDto;
@@ -26,10 +29,21 @@ abstract class UserDto with _$UserDto {
     return User(
       id: id,
       email: email,
-      name: name,
+      name: displayName,
       avatar: avatar,
       role: role,
     );
+  }
+
+  /// Tên hiển thị: name nếu có, không thì ghép firstName + lastName, cuối cùng lấy email
+  String get displayName {
+    if (name != null && name!.trim().isNotEmpty) return name!.trim();
+    final full = [firstName, lastName]
+        .whereType<String>()
+        .map((part) => part.trim())
+        .where((part) => part.isNotEmpty)
+        .join(' ');
+    return full.isNotEmpty ? full : email;
   }
 }
 

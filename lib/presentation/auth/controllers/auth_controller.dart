@@ -61,8 +61,6 @@ class AuthController extends AutoDisposeNotifier<User?> {
       if (context.mounted) {
         overlay.showWithTimeout(message: "Đăng nhập thất bại: $e");
       }
-    } finally {
-      overlay.hide();
     }
   }
 
@@ -100,8 +98,6 @@ class AuthController extends AutoDisposeNotifier<User?> {
       if (context.mounted) {
         overlay.showWithTimeout(message: "Đăng nhập thất bại: $e");
       }
-    } finally {
-      overlay.hide();
     }
   }
 
@@ -135,8 +131,6 @@ class AuthController extends AutoDisposeNotifier<User?> {
       if (context.mounted) {
         overlay.showWithTimeout(message: "Đăng nhập thất bại: $e");
       }
-    } finally {
-      overlay.hide();
     }
   }
 
@@ -167,8 +161,6 @@ class AuthController extends AutoDisposeNotifier<User?> {
       if (context.mounted) {
         overlay.showWithTimeout(message: "Đăng xuất thất bại: $e");
       }
-    } finally {
-      overlay.hide();
     }
   }
 }
