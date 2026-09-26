@@ -50,22 +50,20 @@ class DefaultFirebaseOptions {
   }
 
   static const FirebaseOptions android = FirebaseOptions(
-    apiKey: 'AIzaSyBGdWXWo2_ArHBMCn87713JefT1oYbdupI',
-    appId: '1:1043002656610:android:aaf903d54a4a0317598e3b',
-    messagingSenderId: '1043002656610',
-    projectId: 'pp191225-2a125',
-    storageBucket: 'pp191225-2a125.firebasestorage.app',
+    apiKey: 'AIzaSyAxQqOQXH84aE0XXJOIVegjvaMU2IQmCuI',
+    appId: '1:1039310271276:android:d5414ae6626db985c27289',
+    messagingSenderId: '1039310271276',
+    projectId: 'pp191225-40959',
+    storageBucket: 'pp191225-40959.firebasestorage.app',
   );
-
   static const FirebaseOptions ios = FirebaseOptions(
-    apiKey: 'AIzaSyCsFaRS8cR7VdiEk8SzhPxR3e2sdW7vPAs',
-    appId: '1:1043002656610:ios:168cb0e15164bd9f598e3b',
-    messagingSenderId: '1043002656610',
-    projectId: 'pp191225-2a125',
-    storageBucket: 'pp191225-2a125.firebasestorage.app',
-    androidClientId: '1043002656610-ssnbgik02b1gkqtlbm9dvnt6t6ol6m67.apps.googleusercontent.com',
-    iosClientId: '1043002656610-3pqopqdv5rog773c1imnp729ecus7kqt.apps.googleusercontent.com',
+    apiKey: 'AIzaSyA1LQXuL9Ad1iUSJ1TBLF864vAvo2W8mXU',
+    appId: '1:1039310271276:ios:0d068562db2540c4c27289',
+    messagingSenderId: '1039310271276',
+    projectId: 'pp191225-40959',
+    storageBucket: 'pp191225-40959.firebasestorage.app',
+    androidClientId: '1039310271276-6icaf578n651dr6kqdgon9aoobptsq1r.apps.googleusercontent.com',
+    iosClientId: '1039310271276-9vun8qrjprau7oc8aco2u1fe3fgdtp7a.apps.googleusercontent.com',
     iosBundleId: 'com.example.temp',
   );
-
 }

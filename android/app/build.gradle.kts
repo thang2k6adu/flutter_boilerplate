@@ -14,7 +14,7 @@ android {
     ndkVersion = "27.0.12077973" // ✅ Matches the latest NDK (if not used, you can delete this line)
 
     defaultConfig {
-        applicationId = "com.example.temp"
+        applicationId = "com.kruzetech.pp191225_mobile"
         minSdk = flutter.minSdkVersion       // ✅ Recommended for Firebase / Google Sign-In
         targetSdk = 36    // ✅ sync with compileSdk
         versionCode = flutter.versionCode
