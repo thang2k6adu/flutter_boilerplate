@@ -1,4 +1,7 @@
 class AppImages {
+  static const String welcomeIllustration =
+      'assets/images/welcome/welcome_illustration.png';
+
   static const String totalBalance =
       'assets/images/background/total_balance.png';
   static const String vexConversion =

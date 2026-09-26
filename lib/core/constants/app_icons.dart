@@ -1,5 +1,8 @@
 
 class AppIcons {
+  static const String googleG = 'assets/icons/google_g.svg';
+  static const String facebookF = 'assets/icons/facebook_f.svg';
+  static const String githubMark = 'assets/icons/github_mark.svg';
   static const String male = 'assets/icons/male1.svg';
   static const String shield = 'assets/icons/shield-security.svg';
   static const String levelBadge2 = 'assets/icons/level_badge_2.svg';

@@ -6,6 +6,19 @@ class AppColors {
   static const Color primary =  Color(0xFFE65983);
   static const Color submain = Color(0xFFF4DBF0);
 
+  /// Màu thương hiệu của màn Welcome / Login (tím)
+  static const Color brand = Color(0xFF5F33E1);
+  static const Color brandLight = Color(0xFFD7CCF8);
+
+  static const Color textPrimary = Color(0xFF333333);
+  static const Color textSecondary = Color(0xFF555555);
+
+  /// Các vệt màu pastel mờ ở nền màn Login
+  static const Color blobMint = Color(0xFFDDF5E6);
+  static const Color blobLilac = Color(0xFFE6DDFB);
+  static const Color blobSky = Color(0xFFDDEEFB);
+  static const Color blobCream = Color(0xFFFFF3D6);
+
   static const List<Color> slate = [
     Color(0xFFf8fafc),
     Color(0xFFf1f5f9),

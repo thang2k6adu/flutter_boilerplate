@@ -1,8 +1,9 @@
 import 'package:flutter/gestures.dart';
 import 'package:flutter/material.dart';
+import 'package:pp191225/presentation/auth/widgets/auth_back_button.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
-import 'package:jt291_flutter_mobile/core/core.dart';
-import 'package:jt291_flutter_mobile/presentation/auth/controllers/auth_controller.dart';
+import 'package:pp191225/core/core.dart';
+import 'package:pp191225/presentation/auth/controllers/auth_controller.dart';
 import 'package:intl/intl.dart';
 
 class SignUpScreen extends ConsumerStatefulWidget {
@@ -21,7 +22,9 @@ class SignUpScreenState extends ConsumerState<SignUpScreen> {
   final _passwordController = TextEditingController();
   
   bool _obscurePassword = true;
-  String _selectedCountryCode = '+1';
+  // Mặc định là Việt Nam
+  static const String _defaultCountryFlag = '🇻🇳';
+  String _selectedCountryCode = '+84';
 
   @override
   void dispose() {
@@ -122,18 +125,9 @@ class SignUpScreenState extends ConsumerState<SignUpScreen> {
   }
 
   Widget _buildAppBar(BuildContext context) {
-    return Padding(
-      padding: const EdgeInsets.all(16),
-      child: Row(
-        children: [
-          IconButton(
-            onPressed: () => Navigator.of(context).pop(),
-            icon: const Icon(Icons.arrow_back),
-            padding: EdgeInsets.zero,
-            constraints: const BoxConstraints(),
-          ),
-        ],
-      ),
+    return const Padding(
+      padding: EdgeInsets.fromLTRB(8, 8, 0, 0),
+      child: Align(alignment: Alignment.centerLeft, child: AuthBackButton()),
     );
   }
 
@@ -333,7 +327,7 @@ class SignUpScreenState extends ConsumerState<SignUpScreen> {
       controller: _phoneController,
       keyboardType: TextInputType.phone,
       decoration: InputDecoration(
-        hintText: '(454) 726-0592',
+        hintText: '912 345 678',
         hintStyle: TextStyle(
           color: Colors. grey[400],
           fontSize:  15,
@@ -370,16 +364,19 @@ class SignUpScreenState extends ConsumerState<SignUpScreen> {
                 height: 24,
                 decoration: BoxDecoration(
                   borderRadius: BorderRadius.circular(4),
-                  color: Colors. red,
                 ),
-                child:  const Center(
+                child: const Center(
                   child: Text(
-                    '🇩🇰',
-                    style: TextStyle(fontSize: 16),
+                    _defaultCountryFlag,
+                    style: TextStyle(fontSize: 20),
                   ),
                 ),
               ),
-              const SizedBox(width: 8),
+              const SizedBox(width: 4),
+              Text(
+                _selectedCountryCode,
+                style: TextStyle(fontSize: 15, color: Colors.grey[700]),
+              ),
               const Icon(Icons.arrow_drop_down, color: Colors.grey),
             ],
           ),

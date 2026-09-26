@@ -6,6 +6,8 @@ export 'base/base_async_notifier.dart';
 
 // Theme module
 export 'theme/app_colors.dart';
+export 'theme/app_fonts.dart';
+export 'theme/app_text_styles.dart';
 
 // Utils - Formatters
 export 'utils/formatters/currency_formatter.dart';
