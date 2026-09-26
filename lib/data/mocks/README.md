@@ -2,7 +2,7 @@
 
 Tất cả mock data trong project đều sử dụng `ApiResponse` và `PaginatedData` để đảm bảo tính nhất quán với API thật từ backend.
 
-## 📁 Cấu trúc Files
+## Cấu trúc Files
 
 ```
 lib/data/mocks/
@@ -13,7 +13,7 @@ lib/data/mocks/
 └── search_user_mock.dart       # Mock data: search users
 ```
 
-## 🎯 Base Model Structure
+## Base Model Structure
 
 ### ApiResponse<T>
 ```dart
@@ -42,7 +42,7 @@ PaginationMeta {
 }
 ```
 
-## 🔧 Helper Functions
+## Helper Functions
 
 ### mockSuccessResponse<T>
 Tạo một `ApiResponse` thành công:
@@ -77,7 +77,7 @@ final response = mockPaginatedResponse<UserModel>(
 );
 ```
 
-## 📚 Mock Data Usage
+## Mock Data Usage
 
 ### 1. Search Users (`search_user_mock.dart`)
 
@@ -211,7 +211,7 @@ final response = mockProfileViewSummaryApiResponse;
 final summary = response.data; // Map<String, dynamic>
 ```
 
-## ✅ Best Practices
+## Best Practices
 
 ### 1. Always Check Error Flag
 ```dart
@@ -249,7 +249,7 @@ print('Code: ${response.code}');
 print('Message: ${response.message}');
 ```
 
-## 🔄 Migration to Real API
+## Migration to Real API
 
 Khi chuyển từ mock sang API thật, bạn chỉ cần:
 
@@ -278,9 +278,9 @@ final apiResponse = ApiResponse.fromJson(
 );
 ```
 
-Logic xử lý data sau đó **GIỐNG HỆT NHAU**! 🎉
+Logic xử lý data sau đó **GIỐNG HỆT NHAU**!
 
-## 📊 Mock Data Statistics
+## Mock Data Statistics
 
 - **Search Users**: 10 users với đa dạng trạng thái (verified, following, mutual followers)
 - **Following**: 20 users
@@ -291,36 +291,36 @@ Logic xử lý data sau đó **GIỐNG HỆT NHAU**! 🎉
 - **Monthly Cards**: 3 cards
 - **Profile Views**: 20 viewers
 
-## 🎨 Mock Data Features
+## Mock Data Features
 
 ### Search Users Mock
-- ✅ Filter by query (nickname, bio, username)
-- ✅ Pagination support
-- ✅ Various user states (verified, following status, mutual followers)
-- ✅ Realistic avatars and bios
-- ✅ Empty results case
-- ✅ Error case
+- Filter by query (nickname, bio, username)
+- Pagination support
+- Various user states (verified, following status, mutual followers)
+- Realistic avatars and bios
+- Empty results case
+- Error case
 
 ### Relationship Mock
-- ✅ Following/Follower/Friend lists
-- ✅ User stats
-- ✅ Individual user profiles
-- ✅ Pagination for all lists
+- Following/Follower/Friend lists
+- User stats
+- Individual user profiles
+- Pagination for all lists
 
 ### Wallet Mock
-- ✅ Wallet summary
-- ✅ Transaction history with pagination
-- ✅ Various transaction types (deposit, withdrawal, gift, etc.)
-- ✅ Recharge packages
-- ✅ Monthly cards
-- ✅ Purchase/Subscribe responses
+- Wallet summary
+- Transaction history with pagination
+- Various transaction types (deposit, withdrawal, gift, etc.)
+- Recharge packages
+- Monthly cards
+- Purchase/Subscribe responses
 
 ### Profile View Mock
-- ✅ Paginated viewers
-- ✅ Access control (canViewFull)
-- ✅ View summary
+- Paginated viewers
+- Access control (canViewFull)
+- View summary
 
-## 💡 Tips
+## Tips
 
 1. **Consistent API Structure**: Tất cả mock data đều follow cùng structure `ApiResponse<T>` hoặc `ApiResponse<PaginatedData<T>>`
 

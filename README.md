@@ -1,4 +1,4 @@
-# 🚀 Flutter Clean Architecture Boilerplate
+# Flutter Clean Architecture Boilerplate
 
 [![Flutter Version](https://img.shields.io/badge/Flutter-3.9+-blue.svg)](https://flutter.dev/)
 [![Dart Version](https://img.shields.io/badge/Dart-3.9+-blue.svg)](https://dart.dev/)
@@ -6,67 +6,67 @@
 
 A production-ready Flutter boilerplate following **Clean Architecture** principles with **Riverpod** state management, **Firebase** integration, and **RESTful API** support.
 
-## 📋 Table of Contents
+## Table of Contents
 
-- [Features](#-features)
-- [Architecture Overview](#-architecture-overview)
-- [Tech Stack](#-tech-stack)
-- [Project Structure](#-project-structure)
-- [Getting Started](#-getting-started)
-- [Documentation](#-documentation)
-- [Code Generation](#-code-generation)
-
----
-
-## ✨ Features
-
-### 🏗️ Architecture & Code Quality
-- ✅ **Clean Architecture** - Domain, Data, Presentation layers with clear separation
-- ✅ **SOLID Principles** - Maintainable and testable code
-- ✅ **Either Monad** - Functional error handling
-- ✅ **Repository Pattern** - Abstract data sources
-- ✅ **UseCase Pattern** - Single responsibility business logic
-
-### 🎯 State Management
-- ✅ **Riverpod 2.6** - Modern dependency injection and state management
-- ✅ **Code Generation** - Type-safe providers with `riverpod_generator`
-- ✅ **Freezed** - Immutable data classes with code generation
-
-### 🔥 Firebase Integration
-- ✅ **Firebase Auth** - Email/Password + Social login
-- ✅ **Firebase Analytics** - User behavior tracking
-- ✅ **Firebase Crashlytics** - Error monitoring
-- ✅ **Cloud Messaging** - Push notifications ready
-
-### 🌐 API & Data
-- ✅ **Dio HTTP Client** - RESTful API integration
-- ✅ **Token Management** - Auto-refresh with secure storage
-- ✅ **Error Handling** - Centralized error management
-- ✅ **DTO Pattern** - Data Transfer Objects with JSON serialization
-- ✅ **Local Storage** - Secure token storage with `flutter_secure_storage`
-
-### 🎨 UI & UX
-- ✅ **Go Router** - Type-safe navigation with deep linking
-- ✅ **Custom Theme** - Light/Dark mode support
-- ✅ **Responsive Design** - Adaptive layouts
-- ✅ **Reusable Widgets** - Shared component library
-- ✅ **Image Handling** - Picker, cropper, and caching
-
-### 🧪 Developer Experience
-- ✅ **Hot Reload Support** - Fast development cycle
-- ✅ **Code Generation** - Build runner for models and providers
-- ✅ **Linting** - Strict analysis options
-- ✅ **Testing Ready** - Architecture supports unit/widget/integration tests
+- [Features](#features)
+- [Architecture Overview](#architecture-overview)
+- [Tech Stack](#tech-stack)
+- [Project Structure](#project-structure)
+- [Getting Started](#getting-started)
+- [Documentation](#documentation)
+- [Code Generation](#code-generation)
 
 ---
 
-## 🏗️ Architecture Overview
+## Features
+
+### Architecture & Code Quality
+- **Clean Architecture** - Domain, Data, Presentation layers with clear separation
+- **SOLID Principles** - Maintainable and testable code
+- **Either Monad** - Functional error handling
+- **Repository Pattern** - Abstract data sources
+- **UseCase Pattern** - Single responsibility business logic
+
+### State Management
+- **Riverpod 2.6** - Modern dependency injection and state management
+- **Code Generation** - Type-safe providers with `riverpod_generator`
+- **Freezed** - Immutable data classes with code generation
+
+### Firebase Integration
+- **Firebase Auth** - Email/Password + Social login
+- **Firebase Analytics** - User behavior tracking
+- **Firebase Crashlytics** - Error monitoring
+- **Cloud Messaging** - Push notifications ready
+
+### API & Data
+- **Dio HTTP Client** - RESTful API integration
+- **Token Management** - Auto-refresh with secure storage
+- **Error Handling** - Centralized error management
+- **DTO Pattern** - Data Transfer Objects with JSON serialization
+- **Local Storage** - Secure token storage with `flutter_secure_storage`
+
+### UI & UX
+- **Go Router** - Type-safe navigation with deep linking
+- **Custom Theme** - Light/Dark mode support
+- **Responsive Design** - Adaptive layouts
+- **Reusable Widgets** - Shared component library
+- **Image Handling** - Picker, cropper, and caching
+
+### Developer Experience
+- **Hot Reload Support** - Fast development cycle
+- **Code Generation** - Build runner for models and providers
+- **Linting** - Strict analysis options
+- **Testing Ready** - Architecture supports unit/widget/integration tests
+
+---
+
+## Architecture Overview
 
 This project follows **Clean Architecture** principles with three main layers:
 
 ```
 ┌──────────────────────────────────────────────────────┐
-│            📱 PRESENTATION LAYER                      │
+│ PRESENTATION LAYER │
 │  ┌────────────────────────────────────────────────┐  │
 │  │  UI (Screens, Widgets)                         │  │
 │  │  Controllers (Riverpod Notifiers)              │  │
@@ -76,7 +76,7 @@ This project follows **Clean Architecture** principles with three main layers:
                     │ depends on
                     ▼
 ┌──────────────────────────────────────────────────────┐
-│            🎯 DOMAIN LAYER (CORE LOGIC)              │
+│ DOMAIN LAYER (CORE LOGIC) │
 │  ┌────────────────────────────────────────────────┐  │
 │  │  Entities (Business Models)                    │  │
 │  │  Repository Interfaces (Contracts)             │  │
@@ -87,7 +87,7 @@ This project follows **Clean Architecture** principles with three main layers:
                     │ implemented by
                     ▼
 ┌──────────────────────────────────────────────────────┐
-│            💾 DATA LAYER                              │
+│ DATA LAYER │
 │  ┌────────────────────────────────────────────────┐  │
 │  │  DTOs (Data Transfer Objects)                  │  │
 │  │  DataSources (Remote API, Local DB)            │  │
@@ -96,7 +96,7 @@ This project follows **Clean Architecture** principles with three main layers:
 └──────────────────────────────────────────────────────┘
 ```
 
-### 🔄 Data Flow Example (Login Feature)
+### Data Flow Example (Login Feature)
 
 ```
 User Input (LoginScreen)
@@ -118,7 +118,7 @@ Either<Failure, AuthResponse>
 Update UI State
 ```
 
-### 📐 Layer Responsibilities
+### Layer Responsibilities
 
 | Layer | Responsibilities | Dependencies |
 |-------|-----------------|--------------|
@@ -128,7 +128,7 @@ Update UI State
 
 ---
 
-## 🛠️ Tech Stack
+## Tech Stack
 
 ### Core
 - **Flutter SDK**: 3.9.2+
@@ -167,14 +167,14 @@ Update UI State
 
 ---
 
-## 📁 Project Structure
+## Project Structure
 
 ```
 lib/
-├── 📄 main.dart                          # App entry point
-├── 📄 firebase_options.dart              # Firebase config
+├── main.dart # App entry point
+├── firebase_options.dart # Firebase config
 │
-├── ⚙️ core/                              # Core utilities (framework-agnostic)
+├── core/ # Core utilities (framework-agnostic)
 │   ├── base/                            # Base classes
 │   │   ├── base_async_notifier.dart
 │   │   └── base_pagination_notifier.dart
@@ -192,7 +192,7 @@ lib/
 │       ├── formatters/
 │       └── validators/
 │
-├── 🎯 domain/                            # Business logic layer
+├── domain/ # Business logic layer
 │   ├── entities/                        # Business models (pure Dart)
 │   │   ├── auth/
 │   │   │   ├── auth_response.dart
@@ -212,7 +212,7 @@ lib/
 │   └── failures/                        # Error types
 │       └── failures.dart
 │
-├── 💾 data/                              # Data layer
+├── data/ # Data layer
 │   ├── datasources/                     # Data sources
 │   │   ├── remote/                      # API calls
 │   │   │   ├── auth_remote_datasource.dart
@@ -230,7 +230,7 @@ lib/
 │       ├── auth_repository_impl.dart
 │       └── user_repository_impl.dart
 │
-├── 🎨 presentation/                      # UI layer
+├── presentation/ # UI layer
 │   ├── auth/                            # Auth feature
 │   │   ├── controllers/
 │   │   │   ├── auth_controller.dart
@@ -245,7 +245,7 @@ lib/
 │       ├── screens/
 │       └── widgets/
 │
-├── 🧩 shared/                            # Shared UI components
+├── shared/ # Shared UI components
 │   ├── widgets/                         # Reusable widgets
 │   │   ├── buttons/
 │   │   ├── inputs/
@@ -253,12 +253,12 @@ lib/
 │   ├── layouts/                         # Layout components
 │   └── helpers/                         # UI helpers
 │
-├── 🔌 providers/                         # Riverpod providers
+├── providers/ # Riverpod providers
 │   ├── datasources_provider.dart
 │   ├── repositories_provider.dart
 │   └── usecases_provider.dart
 │
-└── 🗺️ routers/                           # Navigation
+└── routers/ # Navigation
     ├── app_router.dart
     ├── auth_routes.dart
     └── main_routes.dart
@@ -266,7 +266,7 @@ lib/
 
 ---
 
-## 🚀 Getting Started
+## Getting Started
 
 ### Prerequisites
 
@@ -296,7 +296,7 @@ flutter run
 
 ---
 
-## 📚 Documentation
+## Documentation
 
 - **[QUICK_START.md](QUICK_START.md)** - Setup and run the project
 - **[CODING_GUIDE.md](CODING_GUIDE.md)** - How to implement new features
@@ -304,7 +304,7 @@ flutter run
 
 ---
 
-## 🔧 Code Generation
+## Code Generation
 
 This project uses code generation for:
 - **Freezed**: Immutable data classes
@@ -323,7 +323,7 @@ dart run build_runner watch --delete-conflicting-outputs
 
 ---
 
-## 🧪 Testing
+## Testing
 
 ```bash
 # Run all tests
@@ -335,33 +335,33 @@ flutter test --coverage
 
 ---
 
-## 📱 Platform Support
+## Platform Support
 
 | Platform | Status |
 |----------|--------|
-| Android  | ✅ Supported |
-| iOS      | ✅ Supported |
-| Web      | 🚧 In Progress |
-| Desktop  | 🚧 Planned |
+| Android  | Yes Supported |
+| iOS      | Yes Supported |
+| Web | In Progress |
+| Desktop | Planned |
 
 ---
 
-## 📝 License
+## License
 
 This project is licensed under the MIT License - see the [LICENSE](LICENSE) file for details.
 
 ---
 
-## 👥 Contributing
+## Contributing
 
 Contributions are welcome! Please read our contributing guidelines before submitting PRs.
 
 ---
 
-## 📞 Support
+## Support
 
 For questions or support, please contact the development team.
 
 ---
 
-**Built with ❤️ using Flutter & Clean Architecture**
+**Built with using Flutter & Clean Architecture**

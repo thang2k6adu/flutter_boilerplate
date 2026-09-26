@@ -1,10 +1,10 @@
-# 📚 Coding Guide - Clean Architecture Implementation
+# Coding Guide - Clean Architecture Implementation
 
 This guide demonstrates how to implement a complete feature following Clean Architecture principles in this boilerplate.
 
 ---
 
-## 🚀 Quick Feature Flow (TL;DR)
+## Quick Feature Flow (TL;DR)
 
 Khi code **một feature mới**, luôn đi theo flow này:
 
@@ -31,27 +31,27 @@ Khi code **một feature mới**, luôn đi theo flow này:
    - `dart run build_runner build --delete-conflicting-outputs`
    - `flutter run` và test đầy đủ các flow của feature.
 
-## 📋 Table of Contents
+## Table of Contents
 
-- [Architecture Overview](#-architecture-overview)
-- [Project Structure](#-project-structure)
-- [Feature Example: Product Management](#-feature-example-product-management)
-- [Step-by-Step Implementation](#-step-by-step-implementation)
-- [Best Practices](#-best-practices)
-- [Common Patterns](#-common-patterns)
+- [Architecture Overview](#architecture-overview)
+- [Project Structure](#project-structure)
+- [Feature Example: Product Management](#feature-example-product-management)
+- [Step-by-Step Implementation](#step-by-step-implementation)
+- [Best Practices](#best-practices)
+- [Common Patterns](#common-patterns)
 
 ---
 
-## 🏗️ Architecture Overview
+## Architecture Overview
 
 ### Three Layers
 
 ```
-📱 Presentation Layer (UI)
+ Presentation Layer (UI)
     ↓ calls
-🎯 Domain Layer (Business Logic)
+ Domain Layer (Business Logic)
     ↑ implements
-💾 Data Layer (Data Sources)
+ Data Layer (Data Sources)
 ```
 
 ### Key Principles
@@ -66,7 +66,7 @@ Khi code **một feature mới**, luôn đi theo flow này:
 
 ---
 
-## 📁 Project Structure
+## Project Structure
 
 ```
 lib/
@@ -82,7 +82,7 @@ lib/
 │   ├── mixins/                 # Reusable mixins
 │   ├── theme/                  # App theme
 │   └── utils/                  # Utilities (either, formatters, validators)
-├── data/                       # 💾 DATA LAYER
+├── data/ # DATA LAYER
 │   ├── datasources/            # Data sources (API, local storage)
 │   │   ├── local/              # Local data (SecureStorage, SQLite)
 │   │   └── remote/             # Remote data (API calls)
@@ -92,12 +92,12 @@ lib/
 │   │   └── users/
 │   ├── repositories/           # Repository implementations
 │   └── services/               # External services (API, Firebase)
-├── domain/                     # 🎯 DOMAIN LAYER (Pure Dart)
+├── domain/ # DOMAIN LAYER (Pure Dart)
 │   ├── entities/               # Business models
 │   ├── failures/               # Failure types
 │   ├── repositories/           # Repository interfaces (contracts)
 │   └── usecases/               # Business logic
-├── presentation/               # 📱 PRESENTATION LAYER
+├── presentation/ # PRESENTATION LAYER
 │   ├── auth/
 │   │   ├── controllers/        # State management (Notifiers)
 │   │   ├── screens/            # Pages
@@ -127,26 +127,26 @@ lib/
 ```
 Presentation → Domain
 Data → Domain
-Presentation ✗ Data (NEVER import Data in Presentation)
-Domain ✗ Data (Domain knows nothing about implementations)
-Domain ✗ Presentation (Domain is pure Dart)
+Presentation Data (NEVER import Data in Presentation)
+Domain Data (Domain knows nothing about implementations)
+Domain Presentation (Domain is pure Dart)
 ```
 
 ---
 
-## 🎯 Feature Example: Authentication (Email/Password + Refresh Token)
+## Feature Example: Authentication (Email/Password + Refresh Token)
 
 Ví dụ này bám sát kiến trúc của boilerplate và tận dụng `ApiResponse<T>`/`PaginatedData<T>` khi cần. Yêu cầu:
 
-- ✅ Login bằng email/password
-- ✅ Lưu access/refresh token, tự refresh khi hết hạn
-- ✅ Lấy profile người dùng
-- ✅ Logout (xóa token + state)
-- ✅ Xử lý lỗi tập trung qua `Failure`
+- Login bằng email/password
+- Lưu access/refresh token, tự refresh khi hết hạn
+- Lấy profile người dùng
+- Logout (xóa token + state)
+- Xử lý lỗi tập trung qua `Failure`
 
 ---
 
-## 📝 Step-by-Step Implementation (Auth)
+## Step-by-Step Implementation (Auth)
 
 > **Flow thực tế:** Có API → tạo DTO → DataSource → Domain (Entity/Repo interface/UseCase) → Repo impl → Providers → Controller → UI → Test.
 
@@ -201,7 +201,7 @@ class TokenPairDto with _$TokenPairDto {
 `lib/data/models/auth/user_dto.dart`
 ```dart
 import 'package:freezed_annotation/freezed_annotation.dart';
-import 'package:jt291_flutter_mobile/domain/entities/auth/user.dart';
+import 'package:pp191225/domain/entities/auth/user.dart';
 
 part 'user_dto.freezed.dart';
 part 'user_dto.g.dart';
@@ -234,10 +234,10 @@ extension UserDtoX on UserDto {
 `lib/data/models/auth/auth_response_dto.dart`
 ```dart
 import 'package:freezed_annotation/freezed_annotation.dart';
-import 'package:jt291_flutter_mobile/data/models/auth/token_pair_dto.dart';
-import 'package:jt291_flutter_mobile/data/models/auth/user_dto.dart';
-import 'package:jt291_flutter_mobile/domain/entities/auth/auth_response.dart';
-import 'package:jt291_flutter_mobile/domain/entities/auth/token_pair.dart';
+import 'package:pp191225/data/models/auth/token_pair_dto.dart';
+import 'package:pp191225/data/models/auth/user_dto.dart';
+import 'package:pp191225/domain/entities/auth/auth_response.dart';
+import 'package:pp191225/domain/entities/auth/token_pair.dart';
 
 part 'auth_response_dto.freezed.dart';
 part 'auth_response_dto.g.dart';
@@ -265,7 +265,7 @@ extension AuthResponseDtoX on AuthResponseDto {
 }
 ```
 
-**🔨 Generate code**
+** Generate code**
 ```bash
 dart run build_runner build --delete-conflicting-outputs
 ```
@@ -274,8 +274,8 @@ dart run build_runner build --delete-conflicting-outputs
 
 `lib/data/datasources/remote/auth_remote_datasource.dart`
 ```dart
-import 'package:jt291_flutter_mobile/data/models/auth/auth_response_dto.dart';
-import 'package:jt291_flutter_mobile/data/models/auth/user_dto.dart';
+import 'package:pp191225/data/models/auth/auth_response_dto.dart';
+import 'package:pp191225/data/models/auth/user_dto.dart';
 
 abstract class AuthRemoteDataSource {
   Future<AuthResponseDto> login({
@@ -296,11 +296,11 @@ abstract class AuthRemoteDataSource {
 `lib/data/datasources/remote/auth_remote_datasource_impl.dart`
 ```dart
 import 'package:dio/dio.dart';
-import 'package:jt291_flutter_mobile/data/datasources/remote/auth_remote_datasource.dart';
-import 'package:jt291_flutter_mobile/data/models/auth/auth_response_dto.dart';
-import 'package:jt291_flutter_mobile/data/models/auth/user_dto.dart';
-import 'package:jt291_flutter_mobile/data/models/base/api_response.dart';
-import 'package:jt291_flutter_mobile/data/services/api_service.dart';
+import 'package:pp191225/data/datasources/remote/auth_remote_datasource.dart';
+import 'package:pp191225/data/models/auth/auth_response_dto.dart';
+import 'package:pp191225/data/models/auth/user_dto.dart';
+import 'package:pp191225/data/models/base/api_response.dart';
+import 'package:pp191225/data/services/api_service.dart';
 
 class AuthRemoteDataSourceImpl implements AuthRemoteDataSource {
   final ApiService apiService;
@@ -388,11 +388,11 @@ class AuthResponse {
 
 **Repository interface** (`lib/domain/repositories/auth_repository.dart`)
 ```dart
-import 'package:jt291_flutter_mobile/core/utils/either.dart';
-import 'package:jt291_flutter_mobile/domain/entities/auth/auth_response.dart';
-import 'package:jt291_flutter_mobile/domain/entities/auth/user.dart';
-import 'package:jt291_flutter_mobile/domain/entities/auth/token_pair.dart';
-import 'package:jt291_flutter_mobile/domain/failures/failures.dart';
+import 'package:pp191225/core/utils/either.dart';
+import 'package:pp191225/domain/entities/auth/auth_response.dart';
+import 'package:pp191225/domain/entities/auth/user.dart';
+import 'package:pp191225/domain/entities/auth/token_pair.dart';
+import 'package:pp191225/domain/failures/failures.dart';
 
 abstract class AuthRepository {
   Future<Either<Failure, AuthResponse>> login({
@@ -496,13 +496,13 @@ class LogoutUseCase {
 
 `lib/data/repositories/auth_repository_impl.dart`
 ```dart
-import 'package:jt291_flutter_mobile/core/utils/either.dart';
-import 'package:jt291_flutter_mobile/data/datasources/remote/auth_remote_datasource.dart';
-import 'package:jt291_flutter_mobile/domain/entities/auth/auth_response.dart';
-import 'package:jt291_flutter_mobile/domain/entities/auth/user.dart';
-import 'package:jt291_flutter_mobile/domain/entities/auth/token_pair.dart';
-import 'package:jt291_flutter_mobile/domain/failures/failures.dart';
-import 'package:jt291_flutter_mobile/domain/repositories/auth_repository.dart';
+import 'package:pp191225/core/utils/either.dart';
+import 'package:pp191225/data/datasources/remote/auth_remote_datasource.dart';
+import 'package:pp191225/domain/entities/auth/auth_response.dart';
+import 'package:pp191225/domain/entities/auth/user.dart';
+import 'package:pp191225/domain/entities/auth/token_pair.dart';
+import 'package:pp191225/domain/failures/failures.dart';
+import 'package:pp191225/domain/repositories/auth_repository.dart';
 
 class AuthRepositoryImpl implements AuthRepository {
   final AuthRemoteDataSource remote;
@@ -600,8 +600,8 @@ final authRemoteDataSourceProvider = Provider<AuthRemoteDataSource>((ref) {
 
 `lib/providers/repositories_provider.dart`
 ```dart
-import 'package:jt291_flutter_mobile/data/repositories/auth_repository_impl.dart';
-import 'package:jt291_flutter_mobile/domain/repositories/auth_repository.dart';
+import 'package:pp191225/data/repositories/auth_repository_impl.dart';
+import 'package:pp191225/domain/repositories/auth_repository.dart';
 
 final authRepositoryProvider = Provider<AuthRepository>((ref) {
   final remote = ref.watch(authRemoteDataSourceProvider);
@@ -612,10 +612,10 @@ final authRepositoryProvider = Provider<AuthRepository>((ref) {
 
 `lib/providers/usecases_provider.dart`
 ```dart
-import 'package:jt291_flutter_mobile/domain/usecases/auth/login_usecase.dart';
-import 'package:jt291_flutter_mobile/domain/usecases/auth/refresh_token_usecase.dart';
-import 'package:jt291_flutter_mobile/domain/usecases/auth/get_profile_usecase.dart';
-import 'package:jt291_flutter_mobile/domain/usecases/auth/logout_usecase.dart';
+import 'package:pp191225/domain/usecases/auth/login_usecase.dart';
+import 'package:pp191225/domain/usecases/auth/refresh_token_usecase.dart';
+import 'package:pp191225/domain/usecases/auth/get_profile_usecase.dart';
+import 'package:pp191225/domain/usecases/auth/logout_usecase.dart';
 
 final loginUseCaseProvider = Provider<LoginUseCase>((ref) {
   final repo = ref.watch(authRepositoryProvider);
@@ -643,7 +643,7 @@ final logoutUseCaseProvider = Provider<LogoutUseCase>((ref) {
 `lib/presentation/auth/controllers/auth_state.dart`
 ```dart
 import 'package:freezed_annotation/freezed_annotation.dart';
-import 'package:jt291_flutter_mobile/domain/entities/auth/user.dart';
+import 'package:pp191225/domain/entities/auth/user.dart';
 
 part 'auth_state.freezed.dart';
 
@@ -661,12 +661,12 @@ class AuthState with _$AuthState {
 `lib/presentation/auth/controllers/auth_controller.dart`
 ```dart
 import 'package:flutter_riverpod/flutter_riverpod.dart';
-import 'package:jt291_flutter_mobile/domain/usecases/auth/login_usecase.dart';
-import 'package:jt291_flutter_mobile/domain/usecases/auth/refresh_token_usecase.dart';
-import 'package:jt291_flutter_mobile/domain/usecases/auth/get_profile_usecase.dart';
-import 'package:jt291_flutter_mobile/domain/usecases/auth/logout_usecase.dart';
-import 'package:jt291_flutter_mobile/presentation/auth/controllers/auth_state.dart';
-import 'package:jt291_flutter_mobile/providers/usecases_provider.dart';
+import 'package:pp191225/domain/usecases/auth/login_usecase.dart';
+import 'package:pp191225/domain/usecases/auth/refresh_token_usecase.dart';
+import 'package:pp191225/domain/usecases/auth/get_profile_usecase.dart';
+import 'package:pp191225/domain/usecases/auth/logout_usecase.dart';
+import 'package:pp191225/presentation/auth/controllers/auth_state.dart';
+import 'package:pp191225/providers/usecases_provider.dart';
 
 final authControllerProvider =
     AutoDisposeNotifierProvider<AuthController, AuthState>(
@@ -782,49 +782,49 @@ flutter run
 
 ---
 
-## 🔄 Development Flow Summary
+## Development Flow Summary
 
 ```
-1. 📋 Analyze API Response (Postman/Swagger)
+1. Analyze API Response (Postman/Swagger)
    ↓
-2. 📦 Create DTOs with @freezed
+2. Create DTOs with @freezed
    ├─ product_dto.dart
    ├─ product_list_dto.dart
    └─ Run: dart run build_runner build
    ↓
-3. 🌐 Create Remote DataSource
+3. Create Remote DataSource
    ├─ Interface (abstract class)
    ├─ Implementation (ApiService)
    └─ Test API calls (optional)
    ↓
-4. 🎯 Create Domain Layer
+4. Create Domain Layer
    ├─ Entities (pure Dart)
    ├─ Repository Interface
    └─ UseCases (ALL business logic here)
    ↓
-5. 🔗 Implement Repository
+5. Implement Repository
    └─ ZERO business logic - just call datasource + map DTO → Entity
    ↓
-6. 🔌 Setup Providers
+6. Setup Providers
    ├─ DataSources (in datasources_provider.dart)
    ├─ Repositories (in repositories_provider.dart)
    └─ UseCases (in usecases_provider.dart)
    ↓
-7. 🎮 Create Controller (AutoDisposeNotifier)
+7. Create Controller (AutoDisposeNotifier)
    ├─ State model (@freezed)
    ├─ Provider declaration
    └─ Controller: ONLY call UseCases + update state
    ↓
-8. 🎨 Create UI Layer
+8. Create UI Layer
    ├─ Screen (watch controller state)
    └─ Widgets
    ↓
-9. ✅ Test & Debug
+9. Test & Debug
 ```
 
 ---
 
-## ✅ Best Practices
+## Best Practices
 
 ### 1. Naming Conventions
 
@@ -928,7 +928,7 @@ final productListControllerProvider =
 
 ---
 
-## 🎯 Common Patterns
+## Common Patterns
 
 ### Pattern 1: Pagination
 
@@ -997,7 +997,7 @@ Future<void> refresh() async {
 
 ---
 
-## 📝 Summary
+## Summary
 
 ### Implementation Checklist (Practical Order)
 
@@ -1035,7 +1035,7 @@ flutter run
 
 ---
 
-## 🎓 Key Takeaways
+## Key Takeaways
 
 ### Architecture Principles
 
@@ -1078,17 +1078,17 @@ flutter run
 
 ### UseCase vs Repository vs Controller Responsibilities
 
-| Responsibility | UseCase ✅ | Repository ❌ | Controller ❌ |
+| Responsibility | UseCase | Repository | Controller |
 |---------------|-----------|--------------|--------------|
-| Business validation | ✅ Yes | ❌ No | ❌ No |
-| Business rules | ✅ Yes | ❌ No | ❌ No |
-| Pagination logic | ✅ Yes | ❌ No | ❌ No |
-| Search logic | ✅ Yes | ❌ No | ❌ No |
-| Orchestration | ✅ Yes | ❌ No | ❌ No |
-| Call DataSource | ❌ No | ✅ Yes | ❌ No |
-| Map DTO → Entity | ❌ No | ✅ Yes | ❌ No |
-| Call UseCase | ❌ No | ❌ No | ✅ Yes |
-| Update UI state | ❌ No | ❌ No | ✅ Yes |
+| Business validation | Yes | No | No |
+| Business rules | Yes | No | No |
+| Pagination logic | Yes | No | No |
+| Search logic | Yes | No | No |
+| Orchestration | Yes | No | No |
+| Call DataSource | No | Yes | No |
+| Map DTO → Entity | No | Yes | No |
+| Call UseCase | No | No | Yes |
+| Update UI state | No | No | Yes |
 
 **Golden Rules:** 
 - **UseCase** = "What to do" (ALL Business Logic)
@@ -1098,7 +1098,7 @@ flutter run
 ### Real Example from This Boilerplate
 
 ```dart
-// ✅ CORRECT: UseCase has business logic
+// CORRECT: UseCase has business logic
 class LoginWithProviderUseCase {
   Future<Either<Failure, AuthResponse>> call(ProviderLogin provider) async {
     // Business logic: handle different providers
@@ -1122,7 +1122,7 @@ class LoginWithProviderUseCase {
   }
 }
 
-// ✅ CORRECT: Repository has ZERO business logic
+// CORRECT: Repository has ZERO business logic
 class AuthRepositoryImpl implements AuthRepository {
   @override
   Future<Either<Failure, AuthResponse>> loginWithFirebase({
@@ -1137,7 +1137,7 @@ class AuthRepositoryImpl implements AuthRepository {
   }
 }
 
-// ✅ CORRECT: Controller ONLY calls UseCase
+// CORRECT: Controller ONLY calls UseCase
 class AuthController extends AutoDisposeNotifier<User?> {
   Future<void> loginWithProvider(ProviderLogin provider) async {
     final result = await _loginWithProviderUseCase(provider);
@@ -1152,4 +1152,4 @@ class AuthController extends AutoDisposeNotifier<User?> {
 
 ---
 
-**Happy Coding! 🚀**
+**Happy Coding! **

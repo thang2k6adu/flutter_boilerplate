@@ -61,20 +61,20 @@ This command will:
   > your-project-name (your-project-id)
 
 ? Which platforms should your configuration support?
-  ✓ android
-  ✓ ios
-  ✓ macos
-  ✓ web
+   android
+   ios
+   macos
+   web
 ```
 
 ### Step 3: Verify Configuration Files
 
 After running `flutterfire configure`, check these files were created/updated:
 
-- ✅ `lib/firebase_options.dart` - Firebase configuration for Dart
-- ✅ `android/app/google-services.json` - Android configuration
-- ✅ `ios/Runner/GoogleService-Info.plist` - iOS configuration
-- ✅ `macos/Runner/GoogleService-Info.plist` - macOS configuration
+- `lib/firebase_options.dart` - Firebase configuration for Dart
+- `android/app/google-services.json` - Android configuration
+- `ios/Runner/GoogleService-Info.plist` - iOS configuration
+- `macos/Runner/GoogleService-Info.plist` - macOS configuration
 
 ### Step 4: Update Dependencies
 
@@ -128,11 +128,11 @@ void main() async {
 1. Go to Firebase Console → Authentication
 2. Click "Get Started"
 3. Enable sign-in methods you want to use:
-   - ✅ Email/Password
-   - ✅ Google
-   - ✅ Apple
-   - ✅ Phone
-   - ✅ Anonymous
+   - Email/Password
+   - Google
+   - Apple
+   - Phone
+   - Anonymous
 
 ### 2. Configure Sign-in Methods
 
@@ -266,13 +266,13 @@ Future<void> testFirebase() async {
   try {
     // Test anonymous sign in
     final userCredential = await FirebaseAuth.instance.signInAnonymously();
-    print('✅ Firebase Connected! User ID: ${userCredential.user?.uid}');
+    print(' Firebase Connected! User ID: ${userCredential.user?.uid}');
     
     // Sign out
     await FirebaseAuth.instance.signOut();
-    print('✅ Sign out successful');
+    print(' Sign out successful');
   } catch (e) {
-    print('❌ Firebase Error: $e');
+    print(' Firebase Error: $e');
   }
 }
 ```
@@ -378,12 +378,12 @@ service cloud.firestore {
 
 ## Next Steps
 
-1. ✅ Test authentication flows
-2. ✅ Set up Firestore (if needed)
-3. ✅ Configure Firebase Storage (if needed)
-4. ✅ Set up Cloud Messaging (if needed)
-5. ✅ Enable Firebase Analytics
-6. ✅ Configure security rules
+1. Test authentication flows
+2. Set up Firestore (if needed)
+3. Configure Firebase Storage (if needed)
+4. Set up Cloud Messaging (if needed)
+5. Enable Firebase Analytics
+6. Configure security rules
 
 ## Resources
 

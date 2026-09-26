@@ -1,19 +1,19 @@
-# 🚀 Quick Start Guide
+# Quick Start Guide
 
 This guide will help you set up and run the Flutter Clean Architecture Boilerplate project in minutes.
 
-## 📋 Table of Contents
+## Table of Contents
 
-- [Prerequisites](#-prerequisites)
-- [Installation](#-installation)
-- [Configuration](#-configuration)
-- [Running the App](#-running-the-app)
-- [Common Commands](#-common-commands)
-- [Troubleshooting](#-troubleshooting)
+- [Prerequisites](#prerequisites)
+- [Installation](#installation)
+- [Configuration](#configuration)
+- [Running the App](#running-the-app)
+- [Common Commands](#common-commands)
+- [Troubleshooting](#troubleshooting)
 
 ---
 
-## ✅ Prerequisites
+## Prerequisites
 
 Before you begin, ensure you have the following installed:
 
@@ -46,16 +46,16 @@ Before you begin, ensure you have the following installed:
 flutter doctor
 
 # Expected output:
-# ✓ Flutter (Channel stable, 3.9.2+)
-# ✓ Android toolchain
-# ✓ Xcode (for macOS users)
-# ✓ Chrome (for web development)
-# ✓ VS Code or Android Studio
+# Flutter (Channel stable, 3.9.2+)
+# Android toolchain
+# Xcode (for macOS users)
+# Chrome (for web development)
+# VS Code or Android Studio
 ```
 
 ---
 
-## 📥 Installation
+## Installation
 
 ### Step 1: Clone the Repository
 
@@ -91,7 +91,7 @@ cp .env.example .env
 # - GOOGLE_WEB_CLIENT_ID (from Firebase Console)
 ```
 
-> **⚠️ Important**: The `.env` file is required for the app to run. See [Configuration](#-configuration) section below for details.
+> ** Important**: The `.env` file is required for the app to run. See [Configuration](#configuration) section below for details.
 
 ### Step 4: Generate Code
 
@@ -115,14 +115,14 @@ dart run build_runner build --delete-conflicting-outputs
 [INFO] Succeeded after 20.5s with 234 outputs
 ```
 
-> **💡 Tip:** Use watch mode during development to auto-generate code on file changes:
+> ** Tip:** Use watch mode during development to auto-generate code on file changes:
 > ```bash
 > dart run build_runner watch --delete-conflicting-outputs
 > ```
 
 ---
 
-## ⚙️ Configuration
+## Configuration
 
 ### 1. Firebase Setup (Optional)
 
@@ -149,7 +149,7 @@ flutterfire configure
 
 See [FIREBASE_SETUP.md](FIREBASE_SETUP.md) for detailed Firebase configuration.
 
-### 2. Environment Variables Setup ⭐
+### 2. Environment Variables Setup
 
 This project uses `.env` files for configuration. This is **REQUIRED** for the app to run.
 
@@ -195,17 +195,17 @@ The app will automatically load `.env` on startup. All API endpoints are managed
 
 ```dart
 // Access in code
-import 'package:jt291_flutter_mobile/core/constants/constants.dart';
+import 'package:pp191225/core/constants/constants.dart';
 
 final baseUrl = ApiConstants.baseUrl;        // from .env
 final endpoint = ApiEndpoints.authLogin;     // '/auth/login'
 ```
 
-> **📖 Detailed Guide**: See [ENV_SETUP.md](ENV_SETUP.md) for complete environment configuration guide and [API_ENDPOINTS.md](API_ENDPOINTS.md) for all available endpoints.
+> ** Detailed Guide**: See [ENV_SETUP.md](ENV_SETUP.md) for complete environment configuration guide and [API_ENDPOINTS.md](API_ENDPOINTS.md) for all available endpoints.
 
 ---
 
-## 🏃 Running the App
+## Running the App
 
 ### Run on Connected Device
 
@@ -257,7 +257,7 @@ flutter build ios --release
 
 ---
 
-## 📝 Common Commands
+## Common Commands
 
 ### Development
 
@@ -341,7 +341,7 @@ open ios/Runner.xcworkspace
 
 ---
 
-## 🐛 Troubleshooting
+## Troubleshooting
 
 ### Issue: "Build runner fails"
 
@@ -460,20 +460,20 @@ flutter upgrade
 
 ---
 
-## 🎯 Next Steps
+## Next Steps
 
 Now that your project is running:
 
-1. ✅ Read [ENV_SETUP.md](ENV_SETUP.md) for detailed environment configuration
-2. ✅ Check [API_ENDPOINTS.md](API_ENDPOINTS.md) for all available API endpoints  
-3. ✅ Read [CODING_GUIDE.md](CODING_GUIDE.md) to learn how to add features
-4. ✅ Explore the project structure in [README.md](README.md)
-5. ✅ Configure Firebase in [FIREBASE_SETUP.md](FIREBASE_SETUP.md)
-6. ✅ Start building your features!
+1. Read [ENV_SETUP.md](ENV_SETUP.md) for detailed environment configuration
+2. Check [API_ENDPOINTS.md](API_ENDPOINTS.md) for all available API endpoints
+3. Read [CODING_GUIDE.md](CODING_GUIDE.md) to learn how to add features
+4. Explore the project structure in [README.md](README.md)
+5. Configure Firebase in [FIREBASE_SETUP.md](FIREBASE_SETUP.md)
+6. Start building your features!
 
 ---
 
-## 📚 Additional Resources
+## Additional Resources
 
 - [ENV_SETUP.md](ENV_SETUP.md) - Environment variables configuration
 - [API_ENDPOINTS.md](API_ENDPOINTS.md) - Complete API endpoints documentation
@@ -487,7 +487,7 @@ Now that your project is running:
 
 ---
 
-## 💡 Pro Tips
+## Pro Tips
 
 1. **Use watch mode** during development:
    ```bash
@@ -508,15 +508,15 @@ Now that your project is running:
 
 ---
 
-## 🆘 Need Help?
+## Need Help?
 
 If you encounter any issues not covered here:
 
-1. Check the [Troubleshooting](#-troubleshooting) section
+1. Check the [Troubleshooting](#troubleshooting) section
 2. Run `flutter doctor -v` for detailed diagnostics
 3. Check project issues on GitHub
 4. Contact the development team
 
 ---
 
-**Happy Coding! 🚀**
+**Happy Coding! **
