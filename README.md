@@ -99,17 +99,19 @@ This project follows **Clean Architecture** principles with three main layers:
 ### Data Flow Example (Login Feature)
 
 ```
-User Input (LoginScreen)
+User Input (LoginScreen / SignUpScreen)
     ↓
-LoginController.login()
+AuthController.loginWithPassword() / register()
     ↓
-LoginUseCase.call()
+LoginWithPasswordUseCase / RegisterUseCase
     ↓
-AuthRepository.login() [Interface in Domain]
+FirebaseAuthService (đăng nhập / tạo tài khoản → Firebase ID Token)
     ↓
-AuthRepositoryImpl.login() [Implementation in Data]
+AuthRepository.loginWithFirebase(idToken) [Interface in Domain]
     ↓
-AuthRemoteDataSource.login() [API Call]
+AuthRepositoryImpl.loginWithFirebase() [Implementation in Data]
+    ↓
+AuthRemoteDataSource.loginWithFirebase() [POST /auth/firebase/login]
     ↓
 AuthResponseDto → AuthResponse Entity
     ↓
@@ -204,7 +206,9 @@ lib/
 │   │   └── user_repository.dart
 │   ├── usecases/                        # Business logic
 │   │   ├── auth/
-│   │   │   ├── login_usecase.dart
+│   │   │   ├── login_with_password_usecase.dart
+│   │   │   ├── login_with_provider_usecase.dart
+│   │   │   ├── register_usecase.dart
 │   │   │   ├── logout_usecase.dart
 │   │   │   └── refresh_token_usecase.dart
 │   │   └── user/

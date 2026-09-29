@@ -9,20 +9,20 @@ import 'package:pp191225/domain/entities/users/user.dart';
 import 'package:pp191225/domain/usecases/auth/login_with_provider_usecase.dart';
 import 'package:pp191225/domain/usecases/auth/login_with_password_usecase.dart';
 import 'package:pp191225/domain/usecases/auth/logout_usecase.dart';
-import 'package:pp191225/domain/usecases/auth/login_usecase.dart';
+import 'package:pp191225/domain/usecases/auth/register_usecase.dart';
 import 'package:pp191225/providers/usecases_provider.dart';
 
 class AuthController extends AutoDisposeNotifier<User?> {
   late final LoginWithProviderUseCase _loginWithProviderUseCase;
   late final LoginWithPasswordUseCase _loginWithPasswordUseCase;
-  late final LoginUseCase _loginUseCase;
+  late final RegisterUseCase _registerUseCase;
   late final LogoutUseCase _logoutUseCase;
 
   @override
   User? build() {
     _loginWithProviderUseCase = ref.read(loginWithProviderUseCaseProvider);
     _loginWithPasswordUseCase = ref.read(loginWithPasswordUseCaseProvider);
-    _loginUseCase = ref.read(loginUseCaseProvider);
+    _registerUseCase = ref.read(registerUseCaseProvider);
     _logoutUseCase = ref.read(logoutUseCaseProvider);
     return null;
   }
@@ -64,29 +64,31 @@ class AuthController extends AutoDisposeNotifier<User?> {
     }
   }
 
-  Future<void> loginWithEmailAndPassword(
-    BuildContext context,
-    String email,
-    String password,
-  ) async {
+  Future<void> register(
+    BuildContext context, {
+    required String email,
+    required String password,
+    String? name,
+  }) async {
     final overlay = UOverlay(context);
-    
-    try {
-      overlay.show(message: "Đang đăng nhập...", loading: true);
 
-      final result = await _loginUseCase(
+    try {
+      overlay.show(message: "Đang đăng ký...", loading: true);
+
+      final result = await _registerUseCase(
         email: email,
         password: password,
+        name: name,
       );
 
       result.fold(
         (failure) {
-          overlay.showWithTimeout(message: "Đăng nhập thất bại: ${failure.message}");
+          overlay.showWithTimeout(message: "Đăng ký thất bại: ${failure.message}");
         },
         (authResponse) async {
           state = authResponse.user;
-          
-          overlay.showWithTimeout(message: "Đăng nhập thành công");
+
+          overlay.showWithTimeout(message: "Đăng ký thành công");
           await Future.delayed(const Duration(milliseconds: 500));
 
           if (context.mounted) {
@@ -96,7 +98,7 @@ class AuthController extends AutoDisposeNotifier<User?> {
       );
     } catch (e) {
       if (context.mounted) {
-        overlay.showWithTimeout(message: "Đăng nhập thất bại: $e");
+        overlay.showWithTimeout(message: "Đăng ký thất bại: $e");
       }
     }
   }

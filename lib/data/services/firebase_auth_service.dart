@@ -68,36 +68,58 @@ class FirebaseAuthService {
       }
       return idToken;
     } on FirebaseAuthException catch (e) {
-      switch (e.code) {
-        case 'user-not-found':
-          throw FirebaseAuthException(
-            code: e.code,
-            message: 'Không tìm thấy người dùng với email này.',
-          );
-        case 'wrong-password':
-          throw FirebaseAuthException(
-            code: e.code,
-            message: 'Sai mật khẩu. Vui lòng thử lại.',
-          );
-        case 'invalid-email':
-          throw FirebaseAuthException(
-            code: e.code,
-            message: 'Email không hợp lệ.',
-          );
-        case 'user-disabled':
-          throw FirebaseAuthException(
-            code: e.code,
-            message: 'Tài khoản này đã bị vô hiệu hóa.',
-          );
-        default:
-          throw FirebaseAuthException(
-            code: e.code,
-            message: e.message ?? 'Đăng nhập thất bại, vui lòng thử lại.',
-          );
-      }
+      throw _mapAuthError(e, 'Đăng nhập thất bại, vui lòng thử lại.');
     } catch (e) {
       throw Exception('Lỗi không xác định khi đăng nhập: $e');
     }
+  }
+
+  /// Tạo tài khoản email/password trên Firebase và trả về Firebase ID Token.
+  Future<String> registerWithEmailAndPassword({
+    required String email,
+    required String password,
+    String? displayName,
+  }) async {
+    try {
+      final UserCredential userCredential = await _auth
+          .createUserWithEmailAndPassword(email: email, password: password);
+
+      final user = userCredential.user;
+      if (user == null) {
+        throw Exception('Không thể đăng ký: Firebase user rỗng.');
+      }
+
+      if (displayName != null && displayName.trim().isNotEmpty) {
+        await user.updateDisplayName(displayName.trim());
+      }
+
+      // Refresh để token mang theo tên vừa cập nhật
+      final idToken = await user.getIdToken(true);
+      if (idToken == null) {
+        throw Exception('Không thể đăng ký: không lấy được ID Token.');
+      }
+      return idToken;
+    } on FirebaseAuthException catch (e) {
+      throw _mapAuthError(e, 'Đăng ký thất bại, vui lòng thử lại.');
+    } catch (e) {
+      throw Exception('Lỗi không xác định khi đăng ký: $e');
+    }
+  }
+
+  FirebaseAuthException _mapAuthError(FirebaseAuthException e, String fallback) {
+    final message = switch (e.code) {
+      'user-not-found' => 'Không tìm thấy người dùng với email này.',
+      'wrong-password' ||
+      'invalid-credential' => 'Email hoặc mật khẩu không đúng.',
+      'invalid-email' => 'Email không hợp lệ.',
+      'user-disabled' => 'Tài khoản này đã bị vô hiệu hóa.',
+      'email-already-in-use' => 'Email này đã được đăng ký.',
+      'weak-password' => 'Mật khẩu quá yếu (tối thiểu 6 ký tự).',
+      'too-many-requests' => 'Thao tác quá nhiều lần, vui lòng thử lại sau.',
+      'network-request-failed' => 'Không có kết nối mạng.',
+      _ => e.message ?? fallback,
+    };
+    return FirebaseAuthException(code: e.code, message: message);
   }
 
   /// Sign out from Firebase and Google

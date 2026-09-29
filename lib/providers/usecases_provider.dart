@@ -1,5 +1,4 @@
 import 'package:flutter_riverpod/flutter_riverpod.dart';
-import 'package:pp191225/domain/usecases/auth/login_usecase.dart';
 import 'package:pp191225/domain/usecases/auth/login_with_provider_usecase.dart';
 import 'package:pp191225/domain/usecases/auth/login_with_password_usecase.dart';
 import 'package:pp191225/domain/usecases/auth/logout_usecase.dart';
@@ -17,18 +16,15 @@ import 'package:pp191225/providers/datasources_provider.dart';
 // Auth UseCases
 // ============================================================================
 
-/// Provide LoginUseCase (for backward compatibility - direct backend login)
-final loginUseCaseProvider = Provider<LoginUseCase>((ref) {
-  final repository = ref.watch(authRepositoryProvider);
-  return LoginUseCase(repository);
-});
-
-/// Provide RegisterUseCase
+/// Provide RegisterUseCase (Firebase register -> backend login bằng ID Token)
 final registerUseCaseProvider = Provider<RegisterUseCase>((ref) {
   final repository = ref.watch(authRepositoryProvider);
-  return RegisterUseCase(repository);
+  final firebaseAuthService = ref.watch(firebaseAuthServiceProvider);
+  return RegisterUseCase(
+    repository: repository,
+    firebaseAuthService: firebaseAuthService,
+  );
 });
-
 
 /// Provide LogoutUseCase (calls Repository only)
 final logoutUseCaseProvider = Provider<LogoutUseCase>((ref) {

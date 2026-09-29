@@ -1,3 +1,4 @@
+import 'package:firebase_auth/firebase_auth.dart' show FirebaseAuthException;
 import 'package:pp191225/core/utils/either.dart';
 import 'package:pp191225/data/services/firebase_auth_service.dart';
 import 'package:pp191225/domain/entities/auth/auth_response.dart';
@@ -36,6 +37,8 @@ class LoginWithPasswordUseCase {
           return Right(authResponse);
         },
       );
+    } on FirebaseAuthException catch (e) {
+      return Left(AuthFailure(message: e.message ?? e.code));
     } catch (e) {
       return Left(ServerFailure(message: e.toString()));
     }

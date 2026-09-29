@@ -66,25 +66,16 @@ class SignUpScreenState extends ConsumerState<SignUpScreen> {
 
     final authController = ref.read(authControllerProvider.notifier);
     try {
-      // Call your register method here
-      // await authController.register(
-      //   context,
-      //   _fullNameController.text,
-      //   _emailController.text,
-      //   _birthDateController.text,
-      //   '$_selectedCountryCode${_phoneController.text}',
-      //   _passwordController.text,
-      // );
-      
-      if (context.mounted) {
-        ScaffoldMessenger.of(context).showSnackBar(
-          const SnackBar(content: Text('Registration successful!')),
-        );
-      }
+      await authController.register(
+        context,
+        email: _emailController.text.trim(),
+        password: _passwordController.text,
+        name: _fullNameController.text.trim(),
+      );
     } catch (e) {
       if (context.mounted) {
         ScaffoldMessenger.of(context).showSnackBar(
-          SnackBar(content: Text('Registration failed: ${e.toString()}')),
+          SnackBar(content: Text('Đăng ký thất bại: ${e.toString()}')),
         );
       }
     }

@@ -54,7 +54,7 @@ class LoginScreenState extends ConsumerState<LoginScreen> {
 
     final authController = ref.read(authControllerProvider.notifier);
     try {
-      await authController.loginWithEmailAndPassword(
+      await authController.loginWithPassword(
         context,
         _emailController.text,
         _passwordController.text,
