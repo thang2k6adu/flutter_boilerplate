@@ -1,6 +1,6 @@
 import 'package:firebase_auth/firebase_auth.dart';
-import 'package:google_sign_in/google_sign_in.dart';
 import 'package:flutter/foundation.dart' show kIsWeb;
+import 'package:google_sign_in/google_sign_in.dart';
 import 'package:pp191225/core/core.dart';
 
 class FirebaseAuthService {
@@ -18,7 +18,10 @@ class FirebaseAuthService {
 
   Future<void> _ensureInitialized() async {
     if (_initialized) return;
-    await _gsi.initialize(clientId: kIsWeb ? null : webClientId);
+    await _gsi.initialize(
+      clientId: kIsWeb ? webClientId : null,
+      serverClientId: kIsWeb ? null : webClientId,
+    );
     _initialized = true;
   }
 
@@ -42,6 +45,8 @@ class FirebaseAuthService {
 
         return await userCred.user?.getIdToken(true);
       });
+    } on FirebaseAuthException catch (e) {
+      throw Exception('Firebase Google Sign-In failed: ${e.message ?? e.code}');
     } on GoogleSignInException catch (e) {
       throw Exception('Google Sign-In failed: $e');
     } catch (e) {
@@ -50,12 +55,12 @@ class FirebaseAuthService {
   }
 
   Future<String> signInWithEmailAndPassword({
-    required String username,
+    required String email,
     required String password,
   }) async {
     try {
       final UserCredential userCredential = await _auth
-          .signInWithEmailAndPassword(email: username, password: password);
+          .signInWithEmailAndPassword(email: email.trim(), password: password);
 
       final user = userCredential.user;
       if (user == null) {
@@ -68,58 +73,97 @@ class FirebaseAuthService {
       }
       return idToken;
     } on FirebaseAuthException catch (e) {
-      throw _mapAuthError(e, 'Đăng nhập thất bại, vui lòng thử lại.');
+      switch (e.code) {
+        case 'user-not-found':
+          throw FirebaseAuthException(
+            code: e.code,
+            message: 'Không tìm thấy người dùng với email này.',
+          );
+        case 'wrong-password':
+        case 'invalid-credential':
+        case 'invalid-login-credentials':
+          throw FirebaseAuthException(
+            code: e.code,
+            message: 'Sai mật khẩu hoặc email. Vui lòng kiểm tra lại.',
+          );
+        case 'invalid-email':
+          throw FirebaseAuthException(
+            code: e.code,
+            message: 'Email không hợp lệ.',
+          );
+        case 'user-disabled':
+          throw FirebaseAuthException(
+            code: e.code,
+            message: 'Tài khoản này đã bị vô hiệu hóa.',
+          );
+        case 'too-many-requests':
+          throw FirebaseAuthException(
+            code: e.code,
+            message: 'Bạn thử đăng nhập quá nhiều lần. Vui lòng thử lại sau.',
+          );
+        case 'network-request-failed':
+          throw FirebaseAuthException(
+            code: e.code,
+            message: 'Không có kết nối mạng. Vui lòng thử lại.',
+          );
+        default:
+          throw FirebaseAuthException(
+            code: e.code,
+            message: e.message ?? 'Đăng nhập thất bại, vui lòng thử lại.',
+          );
+      }
     } catch (e) {
       throw Exception('Lỗi không xác định khi đăng nhập: $e');
     }
   }
 
-  /// Tạo tài khoản email/password trên Firebase và trả về Firebase ID Token.
-  Future<String> registerWithEmailAndPassword({
+  Future<void> createUserWithEmailAndPassword({
     required String email,
     required String password,
     String? displayName,
   }) async {
     try {
-      final UserCredential userCredential = await _auth
-          .createUserWithEmailAndPassword(email: email, password: password);
-
+      final userCredential = await _auth.createUserWithEmailAndPassword(
+        email: email.trim(),
+        password: password,
+      );
       final user = userCredential.user;
       if (user == null) {
         throw Exception('Không thể đăng ký: Firebase user rỗng.');
       }
 
-      if (displayName != null && displayName.trim().isNotEmpty) {
-        await user.updateDisplayName(displayName.trim());
+      final trimmedName = displayName?.trim();
+      if (trimmedName != null && trimmedName.isNotEmpty) {
+        await user.updateDisplayName(trimmedName);
       }
 
-      // Refresh để token mang theo tên vừa cập nhật
-      final idToken = await user.getIdToken(true);
-      if (idToken == null) {
-        throw Exception('Không thể đăng ký: không lấy được ID Token.');
-      }
-      return idToken;
+      await _auth.signOut();
     } on FirebaseAuthException catch (e) {
-      throw _mapAuthError(e, 'Đăng ký thất bại, vui lòng thử lại.');
+      switch (e.code) {
+        case 'email-already-in-use':
+          throw FirebaseAuthException(
+            code: e.code,
+            message: 'Email này đã được đăng ký.',
+          );
+        case 'invalid-email':
+          throw FirebaseAuthException(
+            code: e.code,
+            message: 'Email không hợp lệ.',
+          );
+        case 'weak-password':
+          throw FirebaseAuthException(
+            code: e.code,
+            message: 'Mật khẩu quá yếu. Vui lòng dùng ít nhất 6 ký tự.',
+          );
+        default:
+          throw FirebaseAuthException(
+            code: e.code,
+            message: e.message ?? 'Đăng ký thất bại, vui lòng thử lại.',
+          );
+      }
     } catch (e) {
       throw Exception('Lỗi không xác định khi đăng ký: $e');
     }
-  }
-
-  FirebaseAuthException _mapAuthError(FirebaseAuthException e, String fallback) {
-    final message = switch (e.code) {
-      'user-not-found' => 'Không tìm thấy người dùng với email này.',
-      'wrong-password' ||
-      'invalid-credential' => 'Email hoặc mật khẩu không đúng.',
-      'invalid-email' => 'Email không hợp lệ.',
-      'user-disabled' => 'Tài khoản này đã bị vô hiệu hóa.',
-      'email-already-in-use' => 'Email này đã được đăng ký.',
-      'weak-password' => 'Mật khẩu quá yếu (tối thiểu 6 ký tự).',
-      'too-many-requests' => 'Thao tác quá nhiều lần, vui lòng thử lại sau.',
-      'network-request-failed' => 'Không có kết nối mạng.',
-      _ => e.message ?? fallback,
-    };
-    return FirebaseAuthException(code: e.code, message: message);
   }
 
   /// Sign out from Firebase and Google
@@ -127,7 +171,7 @@ class FirebaseAuthService {
     try {
       // Sign out from Firebase
       await _auth.signOut();
-      
+
       // Sign out from Google
       await _gsi.signOut();
     } catch (e) {
